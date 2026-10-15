@@ -3,114 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Student Performance Analytics Dashboard</title>
+    <title>AI Student Performance Analytics | Karunya Institute of Technology and Sciences</title>
+    <meta name="description" content="AI Student Performance Analytics Dashboard for Karunya Institute of Technology and Sciences. Track student marks, compute SGPA/CGPA, and gain actionable academic insights.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <div class="header">
-        <div>
-            <h1>🎓 AI Student Performance Analytics</h1>
-            <p>Karunya Institute of Technology and Sciences</p>
+    <!-- Institutional Top Utility Bar -->
+    <div class="top-banner">
+        <div class="top-banner-inner">
+            <div class="top-banner-info">
+                <span class="institute-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    Karunya Institute of Technology and Sciences
+                </span>
+                <span class="department-tag">• Deemed to be University • NAAC A++ Accredited</span>
+            </div>
+            <div class="top-banner-status">
+                <span class="status-pill">
+                    <span class="pulse-dot"></span>
+                    Grading Portal Online
+                </span>
+                <span>Session: 2024–2025</span>
+            </div>
         </div>
     </div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="#" class="active">Home</a></li>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#students">Students</a></li>
-            <li><a href="#reports">Reports</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-    </nav>
+    <!-- Sticky Main Navigation Header -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="#" class="brand" aria-label="Home">
+                <div class="brand-icon-wrapper">
+                    🎓
+                </div>
+                <div class="brand-text">
+                    <h1>Karunya Analytics</h1>
+                    <span>Student Performance System</span>
+                </div>
+            </a>
+
+            <nav class="navbar" aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#showcase">Dashboard</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#grading">Grade Scale</a></li>
+                    <li><a href="#workflow">Workflow</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#showcase" class="btn-secondary">View Demo</a>
+                <a href="#features" class="btn-primary">Portal Access</a>
+            </div>
+        </div>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <h2>AI Student Performance Analytics Dashboard</h2>
-        <p class="tagline">Track. Analyze. Improve.</p>
-        <p>
-            A simple and easy-to-use platform for teachers and students to 
-            keep track of marks, calculate grades, and view overall performance.
-            Built for Karunya Institute of Technology and Sciences.
-        </p>
-        <a href="#features" class="hero-btn">Explore Features</a>
+    <section class="hero" id="home">
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
+        
+        <div class="hero-content">
+            <div class="badge-wrapper">
+                <span class="eyebrow-badge">
+                    <span>✨</span>
+                    <span>AI-Powered Continuous Assessment & Evaluation</span>
+                </span>
+            </div>
+
+            <h2>
+                AI Student Performance <br>
+                <span class="highlight-gradient">Analytics Dashboard</span>
+            </h2>
+
+            <div class="tagline">Track • Analyze • Improve</div>
+
+            <p class="lead-text">
+                A purpose-built, intuitive platform for faculty and students at Karunya Institute of Technology and Sciences. 
+                Effortlessly input continuous assessments, automate university 10-point grade calculation, 
+                and uncover actionable performance insights.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#showcase" class="btn-hero-primary">
+                    <span>Explore Dashboard Preview</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#grading" class="btn-hero-secondary">
+                    <span>View 10-Point Scale</span>
+                </a>
+            </div>
+
+            <!-- Key Metrics Strip -->
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <div class="stat-num">10.0 <span>Scale</span></div>
+                    <div class="stat-label">UGC / AICTE Compliant</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">100% <span>Auto</span></div>
+                    <div class="stat-label">SGPA & CGPA Calculation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">3-Tier <span>CIA</span></div>
+                    <div class="stat-label">Internals, Quizzes & Model</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">Instant <span>Export</span></div>
+                    <div class="stat-label">Grade Sheets & Reports</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Features / Cards Section -->
+    <!-- Live Interactive Showcase Preview (Human-Crafted Realistic UI Mockup) -->
+    <section class="showcase-wrapper" id="showcase">
+        <div class="dashboard-mockup">
+            <div class="mockup-header">
+                <div class="window-controls">
+                    <span class="window-dot dot-red"></span>
+                    <span class="window-dot dot-amber"></span>
+                    <span class="window-dot dot-green"></span>
+                </div>
+                <div class="mockup-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                    Student Academic Transcript View • Semester V (Odd 2024-25)
+                </div>
+                <span class="status-pill">Live Simulated Record</span>
+            </div>
+
+            <div class="mockup-body">
+                <!-- Student Identity Strip -->
+                <div class="student-bar">
+                    <div class="student-identity">
+                        <div class="student-avatar">KR</div>
+                        <div class="student-details">
+                            <h4>Kavitha R.</h4>
+                            <p>Register No: <strong>URK22CS1042</strong> • B.Tech Computer Science & Engineering</p>
+                        </div>
+                    </div>
+                    <div class="student-kpis">
+                        <div class="kpi-badge cgpa">
+                            <span class="kpi-val">8.92</span>
+                            <span>Current CGPA</span>
+                        </div>
+                        <div class="kpi-badge standing">
+                            <span class="kpi-val">Distinction</span>
+                            <span>Academic Standing</span>
+                        </div>
+                        <div class="kpi-badge attendance">
+                            <span class="kpi-val">94.5%</span>
+                            <span>Attendance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject Breakdown Mini Cards -->
+                <div class="subject-grid">
+                    <!-- Subject 1 -->
+                    <div class="subject-mini-card">
+                        <div class="subject-meta">
+                            <h5>Machine Learning & AI</h5>
+                            <span class="grade-pill grade-o">O Grade</span>
+                        </div>
+                        <div class="subject-scores">
+                            <span>Score: <strong>93 / 100</strong></span>
+                            <span>Credits: <strong>4.0</strong></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill fill-emerald" style="width: 93%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 2 -->
+                    <div class="subject-mini-card">
+                        <div class="subject-meta">
+                            <h5>Database Management</h5>
+                            <span class="grade-pill grade-aplus">A+ Grade</span>
+                        </div>
+                        <div class="subject-scores">
+                            <span>Score: <strong>86 / 100</strong></span>
+                            <span>Credits: <strong>4.0</strong></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill fill-blue" style="width: 86%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 3 -->
+                    <div class="subject-mini-card">
+                        <div class="subject-meta">
+                            <h5>Computer Networks</h5>
+                            <span class="grade-pill grade-aplus">A+ Grade</span>
+                        </div>
+                        <div class="subject-scores">
+                            <span>Score: <strong>82 / 100</strong></span>
+                            <span>Credits: <strong>3.0</strong></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill fill-blue" style="width: 82%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Subject 4 -->
+                    <div class="subject-mini-card">
+                        <div class="subject-meta">
+                            <h5>Design & Analysis of Algorithms</h5>
+                            <span class="grade-pill grade-a">A Grade</span>
+                        </div>
+                        <div class="subject-scores">
+                            <span>Score: <strong>76 / 100</strong></span>
+                            <span>Credits: <strong>4.0</strong></span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill fill-purple" style="width: 76%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Academic Insight Callout -->
+                <div class="mockup-insight-banner">
+                    <span class="insight-icon">💡</span>
+                    <div class="insight-text">
+                        <strong>Academic Performance Insight:</strong> Student demonstrates exceptional conceptual clarity in Data Science & Machine Learning (Top 5% of cohort). Recommendation: Eligible for Honors track elective specialization.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
     <section class="features" id="features">
-        <h2>Our Key Features</h2>
-        <p class="subtitle">Here are the three main things this dashboard can do:</p>
+        <div class="section-header">
+            <span class="section-tag">Core Capabilities</span>
+            <h2>Our Key Features</h2>
+            <p class="subtitle">
+                Engineered to eliminate manual grading friction and provide students and faculty with crystal-clear academic clarity.
+            </p>
+        </div>
 
         <div class="cards">
-
-            <!-- Card 1 -->
+            <!-- Feature 1: Marks Entry -->
             <div class="card">
-                <span class="icon">✏️</span>
-                <h3>Marks Entry</h3>
+                <div class="card-icon-box icon-blue">
+                    ✏️
+                </div>
+                <h3>Modular Marks Entry</h3>
                 <p>
-                    Teachers can enter student marks for each subject easily. 
-                    Supports internal marks, assignments, and final exam scores.
+                    Faculty can seamlessly record student marks across all assessment formats. 
+                    Built specifically around Karunya's continuous assessment structure.
                 </p>
-                <ul>
-                    <li>Enter marks by subject</li>
-                    <li>Edit marks anytime</li>
-                    <li>Save records quickly</li>
+                <ul class="card-list">
+                    <li>Enter marks by course code & subject</li>
+                    <li>Continuous Internal Assessment (CIA-1 & CIA-2)</li>
+                    <li>Assignment, lab practical & end-sem inputs</li>
+                    <li>Instant edit and quick draft saving</li>
                 </ul>
             </div>
 
-            <!-- Card 2 -->
+            <!-- Feature 2: Grade Calculation -->
             <div class="card">
-                <span class="icon">🧮</span>
-                <h3>Grade Calculation</h3>
+                <div class="card-icon-box icon-emerald">
+                    🧮
+                </div>
+                <h3>Automated Grade Calculation</h3>
                 <p>
-                    The system automatically calculates grades based on the marks
-                    entered. It follows the standard grading rules of the university.
+                    No more manual calculation spreadsheets. The system computes SGPA, CGPA, 
+                    and letter grades based on credit weightage and standard university thresholds.
                 </p>
-                <ul>
-                    <li>Auto grade calculation</li>
-                    <li>Shows CGPA and SGPA</li>
-                    <li>Letter grade display</li>
+                <ul class="card-list">
+                    <li>Instant 10-point scale conversion</li>
+                    <li>Automated SGPA & cumulative CGPA</li>
+                    <li>Official letter grades (O, A+, A, B+, B, C, F)</li>
+                    <li>Arrear detection & credit validation</li>
                 </ul>
             </div>
 
-            <!-- Card 3 -->
+            <!-- Feature 3: Performance Overview -->
             <div class="card">
-                <span class="icon">📊</span>
-                <h3>Performance Overview</h3>
+                <div class="card-icon-box icon-amber">
+                    📊
+                </div>
+                <h3>Performance Analytics</h3>
                 <p>
-                    View how students are performing overall. See which subjects
-                    need improvement and which students are doing well or struggling.
+                    Holistic visual analytics for mentors and students. Identify strengths, 
+                    track historical progression, and flag areas requiring remedial coaching.
                 </p>
-                <ul>
-                    <li>Overall performance view</li>
-                    <li>Subject-wise breakdown</li>
-                    <li>Compare student results</li>
+                <ul class="card-list">
+                    <li>Subject-wise distribution breakdown</li>
+                    <li>Early alert for at-risk performance</li>
+                    <li>Class average & cohort benchmark</li>
+                    <li>One-click printable academic summaries</li>
                 </ul>
             </div>
-
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="about">
-        <h3>AI Student Performance Analytics Dashboard</h3>
-        <p>A mini project developed for academic purposes.</p>
+    <!-- Karunya 10-Point Grade Reference Scale -->
+    <section class="grading-section" id="grading">
+        <div class="grading-container">
+            <div class="section-header">
+                <span class="section-tag">University Regulations</span>
+                <h2>Karunya 10-Point Grading Scale</h2>
+                <p class="subtitle">
+                    Official evaluation benchmarks utilized by this platform for semester grade point calculations.
+                </p>
+            </div>
 
-        <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#features">Dashboard</a>
-            <a href="#">Students</a>
-            <a href="#">Reports</a>
-            <a href="#about">About</a>
+            <div class="grading-table-card">
+                <div class="table-header-title">
+                    <h4>UG & PG Academic Evaluation Matrix</h4>
+                    <span class="status-pill">Active Grading Standard</span>
+                </div>
+                <div class="grading-table-responsive">
+                    <table class="grading-table">
+                        <thead>
+                            <tr>
+                                <th>Marks Range</th>
+                                <th>Grade Point</th>
+                                <th>Letter Grade</th>
+                                <th>Qualitative Performance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>90 – 100</strong></td>
+                                <td><strong>10.0</strong></td>
+                                <td><span class="grade-badge-sm grade-o">O</span></td>
+                                <td>Outstanding</td>
+                                <td><span class="standing-pill">Passed with Distinction</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>80 – 89</strong></td>
+                                <td><strong>9.0</strong></td>
+                                <td><span class="grade-badge-sm grade-aplus">A+</span></td>
+                                <td>Excellent</td>
+                                <td><span class="standing-pill">Passed with Honors</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>70 – 79</strong></td>
+                                <td><strong>8.0</strong></td>
+                                <td><span class="grade-badge-sm grade-a">A</span></td>
+                                <td>Very Good</td>
+                                <td><span class="standing-pill">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>60 – 69</strong></td>
+                                <td><strong>7.0</strong></td>
+                                <td><span class="grade-badge-sm grade-bplus">B+</span></td>
+                                <td>Good</td>
+                                <td><span class="standing-pill">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>50 – 59</strong></td>
+                                <td><strong>6.0</strong></td>
+                                <td><span class="grade-badge-sm" style="background:#f1f5f9; color:#334155;">B</span></td>
+                                <td>Above Average</td>
+                                <td><span class="standing-pill">Passed</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Below 50</strong></td>
+                                <td><strong>0.0</strong></td>
+                                <td><span class="grade-badge-sm" style="background:#fee2e2; color:#b91c1c;">RA</span></td>
+                                <td>Re-Appear / Arrear</td>
+                                <td><span class="standing-pill" style="color:#b91c1c;">Remedial Required</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-Step Academic Workflow -->
+    <section class="workflow-section" id="workflow">
+        <div class="section-header">
+            <span class="section-tag">System Workflow</span>
+            <h2>How The Platform Works</h2>
+            <p class="subtitle">
+                From internal continuous evaluation to semester transcripts in four simple steps.
+            </p>
         </div>
 
-        <p class="copyright">
-            &copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved.
-        </p>
+        <div class="workflow-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h4>Select Subject & Class</h4>
+                <p>Faculty picks the department, degree program, semester, and course catalog from the central directory.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h4>Upload or Key-In Marks</h4>
+                <p>Input CIA-1, CIA-2, lab assignments, or upload batch marks directly through Excel spreadsheets.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h4>Automated Audit & Calculation</h4>
+                <p>Algorithms verify credit weights, calculate SGPA/CGPA, and assign letter grades in milliseconds.</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <h4>Publish & Review Insights</h4>
+                <p>Students access their verified grades while mentors inspect class trends and remedial recommendations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Institutional Callout Strip -->
+    <div class="callout-banner">
+        <div class="callout-box">
+            <div class="callout-content">
+                <h3>Designed for Karunya Academic Excellence</h3>
+                <p>Built as a focused academic micro-project to demonstrate high-efficiency grading automation and actionable student analytics.</p>
+            </div>
+            <a href="#showcase" class="btn-hero-primary" style="background: white; color: #0f2a54; border-color: white;">
+                <span>View Live Demo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Polished Academic Footer -->
+    <footer id="about">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>🎓 Karunya Analytics</h3>
+                    <p>
+                        AI-Enhanced Student Performance Analytics & Grading Dashboard. 
+                        A departmental micro-project developed for academic assessment and workflow optimization.
+                    </p>
+                    <p style="font-size: 0.82rem; color: #64748b;">
+                        Karunya Nagar, Coimbatore, Tamil Nadu 641114, India
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#showcase">Live Dashboard</a></li>
+                        <li><a href="#features">Key Features</a></li>
+                        <li><a href="#grading">Grading Matrix</a></li>
+                        <li><a href="#workflow">Workflow</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Modules</h4>
+                    <ul>
+                        <li><a href="#features">Marks Entry Portal</a></li>
+                        <li><a href="#features">Grade Calculator</a></li>
+                        <li><a href="#features">Performance Trends</a></li>
+                        <li><a href="#grading">Regulations & Scale</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Academic Info</h4>
+                    <ul>
+                        <li><a href="#">Department of AIML</a></li>
+                        <li><a href="#">Curriculum 2024</a></li>
+                        <li><a href="#">NAAC Accreditation</a></li>
+                        <li><a href="#about">Project Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
+                <div class="footer-bottom-badge">
+                    <span class="pulse-dot"></span>
+                    <span>System v2.4 • Pure HTML5 &amp; CSS3</span>
+                </div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Interactive Navigation Highlighting -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const sections = document.querySelectorAll('section[id], footer[id]');
+            let isClickScrolling = false;
+
+            function highlightNav(targetId) {
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === `#${targetId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            // Click Handler: Immediately highlight selected link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        const targetId = href.substring(1);
+                        highlightNav(targetId);
+                        
+                        // Temporarily disable scroll-triggered updates while smooth scrolling
+                        isClickScrolling = true;
+                        setTimeout(() => {
+                            isClickScrolling = false;
+                        }, 800);
+                    }
+                });
+            });
+
+            // Scrollspy: Automatically highlight matching section during scroll
+            const observerOptions = {
+                root: null,
+                rootMargin: '-25% 0px -65% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                if (isClickScrolling) return;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        highlightNav(entry.target.id);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
 </body>
 </html>
