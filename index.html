@@ -90,6 +90,26 @@
     <section class="hero" id="home">
         <div class="hero-glow-1"></div>
         <div class="hero-glow-2"></div>
+
+        <!-- Ambient Floating Academic Chips (Subtle CSS Keyframe Float) -->
+        <div class="hero-floating-elements" aria-hidden="true">
+            <div class="hero-float-chip chip-1">
+                <span class="chip-icon">✨</span>
+                <span class="chip-text">AI Analytics Active</span>
+            </div>
+            <div class="hero-float-chip chip-2">
+                <span class="chip-icon">🎯</span>
+                <span class="chip-text">10.0 UGC Scale</span>
+            </div>
+            <div class="hero-float-chip chip-3">
+                <span class="chip-icon">📊</span>
+                <span class="chip-text">94.5% Attendance</span>
+            </div>
+            <div class="hero-float-chip chip-4">
+                <span class="chip-icon">🏆</span>
+                <span class="chip-text">O Grade Distinction</span>
+            </div>
+        </div>
         
         <div class="hero-content">
             <div class="badge-wrapper">
@@ -122,18 +142,18 @@
                 </a>
             </div>
 
-            <!-- Key Metrics Strip with Live Animated Counters -->
+            <!-- Key Metrics Strip -->
             <div class="stats-strip">
                 <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="10.0" data-decimals="1">10.0</span> <span>Scale</span></div>
+                    <div class="stat-num">10.0 <span>Scale</span></div>
                     <div class="stat-label">UGC / AICTE Compliant</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="100" data-suffix="%">100%</span> <span>Auto</span></div>
+                    <div class="stat-num">100% <span>Auto</span></div>
                     <div class="stat-label">SGPA & CGPA Calculation</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num"><span class="counter" data-target="3">3</span>-Tier <span>CIA</span></div>
+                    <div class="stat-num">3-Tier <span>CIA</span></div>
                     <div class="stat-label">Internals, Quizzes & Model</div>
                 </div>
                 <div class="stat-item">
@@ -172,7 +192,7 @@
                     </div>
                     <div class="student-kpis">
                         <div class="kpi-badge cgpa">
-                            <span class="kpi-val">8.92</span>
+                            <span class="kpi-val" data-target="8.92" data-decimals="2">0.00</span>
                             <span>Current CGPA</span>
                         </div>
                         <div class="kpi-badge standing">
@@ -180,16 +200,22 @@
                             <span>Academic Standing</span>
                         </div>
                         <div class="kpi-badge attendance">
-                            <span class="kpi-val">94.5%</span>
+                            <span class="kpi-val" data-target="94.5" data-suffix="%" data-decimals="1">0.0%</span>
                             <span>Attendance</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Subject Breakdown Mini Cards -->
+                <!-- Interactive Subject Selection Hint -->
+                <div class="subject-grid-hint">
+                    <span class="hint-sparkle">✨</span>
+                    <span>Click any course card below to inspect AI performance diagnostics and tailored suggestions</span>
+                </div>
+
+                <!-- Subject Breakdown Mini Cards with Interactive Hover Tilt & Animated Fill -->
                 <div class="subject-grid">
                     <!-- Subject 1 -->
-                    <div class="subject-mini-card">
+                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Machine Learning">
                         <div class="subject-meta">
                             <h5>Machine Learning & AI</h5>
                             <span class="grade-pill grade-o">O Grade</span>
@@ -199,12 +225,12 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-emerald w-93"></div>
+                            <div class="progress-fill fill-emerald" data-width="93"></div>
                         </div>
                     </div>
 
                     <!-- Subject 2 -->
-                    <div class="subject-mini-card">
+                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Database Management">
                         <div class="subject-meta">
                             <h5>Database Management</h5>
                             <span class="grade-pill grade-aplus">A+ Grade</span>
@@ -214,12 +240,12 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-blue w-86"></div>
+                            <div class="progress-fill fill-blue" data-width="86"></div>
                         </div>
                     </div>
 
                     <!-- Subject 3 -->
-                    <div class="subject-mini-card">
+                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Computer Networks">
                         <div class="subject-meta">
                             <h5>Computer Networks</h5>
                             <span class="grade-pill grade-aplus">A+ Grade</span>
@@ -229,12 +255,12 @@
                             <span>Credits: <strong>3.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-blue w-82"></div>
+                            <div class="progress-fill fill-blue" data-width="82"></div>
                         </div>
                     </div>
 
                     <!-- Subject 4 -->
-                    <div class="subject-mini-card">
+                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Design and Analysis of Algorithms">
                         <div class="subject-meta">
                             <h5>Design & Analysis of Algorithms</h5>
                             <span class="grade-pill grade-a">A Grade</span>
@@ -244,7 +270,7 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-purple w-76"></div>
+                            <div class="progress-fill fill-purple" data-width="76"></div>
                         </div>
                     </div>
                 </div>
@@ -256,13 +282,70 @@
                         <strong>Academic Performance Insight:</strong> Student demonstrates exceptional conceptual clarity in Data Science & Machine Learning (Top 5% of cohort). Recommendation: Eligible for Honors track elective specialization.
                     </div>
                 </div>
+
+                <!-- Live Interactive SGPA & Grade Point Simulator (Hands-On Microproject Feature) -->
+                <div class="interactive-simulator-card">
+                    <div class="sim-header">
+                        <div class="sim-title-group">
+                            <span class="sim-badge">
+                                <span class="pulse-dot"></span>
+                                Live Interactive Demo
+                            </span>
+                            <h4>Real-Time Grade & SGPA Simulator</h4>
+                        </div>
+                        <span class="sim-sub">Slide or select marks to test dynamic 10-point scale conversion</span>
+                    </div>
+
+                    <div class="sim-body">
+                        <div class="sim-input-zone">
+                            <div class="sim-slider-header">
+                                <label for="simMarksInput" class="sim-label">Continuous Assessment / Total Score:</label>
+                                <div class="sim-score-badge">
+                                    <span id="simScoreValue">88</span> <span class="score-max">/ 100</span>
+                                </div>
+                            </div>
+                            <input type="range" id="simMarksInput" class="sim-range-slider" min="0" max="100" value="88" aria-label="Marks Slider">
+                            
+                            <!-- Quick Score Presets -->
+                            <div class="sim-presets">
+                                <span class="presets-label">Try Scores:</span>
+                                <div class="preset-buttons">
+                                    <button type="button" class="preset-chip" data-score="95">95 (O)</button>
+                                    <button type="button" class="preset-chip active" data-score="88">88 (A+)</button>
+                                    <button type="button" class="preset-chip" data-score="78">78 (A)</button>
+                                    <button type="button" class="preset-chip" data-score="66">66 (B+)</button>
+                                    <button type="button" class="preset-chip" data-score="55">55 (B)</button>
+                                    <button type="button" class="preset-chip" data-score="42">42 (RA)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reactive Result Metrics -->
+                        <div class="sim-results-grid">
+                            <div class="sim-result-box grade-result">
+                                <span class="result-label">Letter Grade</span>
+                                <div class="sim-grade-pill grade-aplus" id="simGradePill">A+</div>
+                            </div>
+                            <div class="sim-result-box">
+                                <span class="result-label">Grade Point</span>
+                                <div class="sim-point-value" id="simGradePoint">9.0</div>
+                                <span class="result-scale">out of 10.0</span>
+                            </div>
+                            <div class="sim-result-box status-result">
+                                <span class="result-label">Evaluation Standing</span>
+                                <div class="sim-status-pill" id="simStatusPill">Passed with Honors</div>
+                                <div class="sim-remark" id="simRemark">Outstanding academic competence</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Key Features Section -->
     <section class="features" id="features">
-        <div class="section-header">
+        <div class="section-header reveal-on-scroll">
             <span class="section-tag">Core Capabilities</span>
             <h2>Our Key Features</h2>
             <p class="subtitle">
@@ -272,7 +355,7 @@
 
         <div class="cards">
             <!-- Feature 1: Marks Entry -->
-            <div class="card">
+            <div class="card reveal-on-scroll">
                 <div class="card-icon-box icon-blue">
                     ✏️
                 </div>
@@ -290,7 +373,7 @@
             </div>
 
             <!-- Feature 2: Grade Calculation -->
-            <div class="card">
+            <div class="card reveal-on-scroll">
                 <div class="card-icon-box icon-emerald">
                     🧮
                 </div>
@@ -308,7 +391,7 @@
             </div>
 
             <!-- Feature 3: Performance Overview -->
-            <div class="card">
+            <div class="card reveal-on-scroll">
                 <div class="card-icon-box icon-amber">
                     📊
                 </div>
@@ -416,7 +499,7 @@
     <!-- Karunya 10-Point Grade Reference Scale -->
     <section class="grading-section" id="grading">
         <div class="grading-container">
-            <div class="section-header">
+            <div class="section-header reveal-on-scroll">
                 <span class="section-tag">University Regulations</span>
                 <h2>Karunya 10-Point Grading Scale</h2>
                 <p class="subtitle">
@@ -424,9 +507,9 @@
                 </p>
             </div>
 
-            <div class="grading-table-card">
+            <div class="grading-table-card reveal-on-scroll">
                 <div class="table-header-title">
-                    <h4>UG &amp; PG Academic Evaluation Matrix</h4>
+                    <h4>UG & PG Academic Evaluation Matrix</h4>
                     <span class="status-pill">Active Grading Standard</span>
                 </div>
 
@@ -446,7 +529,7 @@
                 </div>
 
                 <div class="grading-table-responsive">
-                    <table class="grading-table" id="grading-scale-table">
+                    <table class="grading-table">
                         <thead>
                             <tr>
                                 <th>Marks Range</th>
@@ -457,42 +540,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr data-min="90" data-max="100">
+                            <tr>
                                 <td><strong>90 – 100</strong></td>
                                 <td><strong>10.0</strong></td>
                                 <td><span class="grade-badge-sm grade-o">O</span></td>
                                 <td>Outstanding</td>
                                 <td><span class="standing-pill">Passed with Distinction</span></td>
                             </tr>
-                            <tr data-min="80" data-max="89">
+                            <tr>
                                 <td><strong>80 – 89</strong></td>
                                 <td><strong>9.0</strong></td>
                                 <td><span class="grade-badge-sm grade-aplus">A+</span></td>
                                 <td>Excellent</td>
                                 <td><span class="standing-pill">Passed with Honors</span></td>
                             </tr>
-                            <tr data-min="70" data-max="79">
+                            <tr>
                                 <td><strong>70 – 79</strong></td>
                                 <td><strong>8.0</strong></td>
                                 <td><span class="grade-badge-sm grade-a">A</span></td>
                                 <td>Very Good</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr data-min="60" data-max="69">
+                            <tr>
                                 <td><strong>60 – 69</strong></td>
                                 <td><strong>7.0</strong></td>
                                 <td><span class="grade-badge-sm grade-bplus">B+</span></td>
                                 <td>Good</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr data-min="50" data-max="59">
+                            <tr>
                                 <td><strong>50 – 59</strong></td>
                                 <td><strong>6.0</strong></td>
                                 <td><span class="grade-badge-sm grade-b">B</span></td>
                                 <td>Above Average</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr data-min="0" data-max="49">
+                            <tr>
                                 <td><strong>Below 50</strong></td>
                                 <td><strong>0.0</strong></td>
                                 <td><span class="grade-badge-sm grade-ra">RA</span></td>
@@ -508,7 +591,7 @@
 
     <!-- 4-Step Academic Workflow -->
     <section class="workflow-section" id="workflow">
-        <div class="section-header">
+        <div class="section-header reveal-on-scroll">
             <span class="section-tag">System Workflow</span>
             <h2>How The Platform Works</h2>
             <p class="subtitle">
@@ -517,25 +600,25 @@
         </div>
 
         <div class="workflow-grid">
-            <div class="step-card">
+            <div class="step-card reveal-on-scroll">
                 <div class="step-number">1</div>
                 <h4>Select Subject & Class</h4>
                 <p>Faculty picks the department, degree program, semester, and course catalog from the central directory.</p>
             </div>
 
-            <div class="step-card">
+            <div class="step-card reveal-on-scroll">
                 <div class="step-number">2</div>
                 <h4>Upload or Key-In Marks</h4>
                 <p>Input CIA-1, CIA-2, lab assignments, or upload batch marks directly through Excel spreadsheets.</p>
             </div>
 
-            <div class="step-card">
+            <div class="step-card reveal-on-scroll">
                 <div class="step-number">3</div>
                 <h4>Automated Audit & Calculation</h4>
                 <p>Algorithms verify credit weights, calculate SGPA/CGPA, and assign letter grades in milliseconds.</p>
             </div>
 
-            <div class="step-card">
+            <div class="step-card reveal-on-scroll">
                 <div class="step-number">4</div>
                 <h4>Publish & Review Insights</h4>
                 <p>Students access their verified grades while mentors inspect class trends and remedial recommendations.</p>
@@ -543,15 +626,98 @@
         </div>
     </section>
 
+    <!-- Interactive Academic FAQ Accordion Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-tag">Student &amp; Faculty Knowledgebase</span>
+                <h2>Frequently Asked Questions</h2>
+                <p class="subtitle">
+                    Clear answers to grading guidelines, credit distributions, and performance calculations at Karunya Institute.
+                </p>
+            </div>
+
+            <div class="faq-accordion" id="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item active reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="true">
+                        <span>How is the Semester Grade Point Average (SGPA) calculated?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            SGPA is computed using the Choice Based Credit System (CBCS) weighted average formula:
+                            <code>SGPA = &Sigma;(Course Credits &times; Grade Points Earned) / &Sigma;(Total Registered Credits)</code>.
+                            Each course letter grade corresponds to a university-defined grade point (e.g. <strong>O = 10.0, A+ = 9.0, A = 8.0, B+ = 7.0, B = 6.0, RA = 0.0</strong>).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="false">
+                        <span>What constitutes Continuous Internal Assessment (CIA) at Karunya?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            CIA is a comprehensive evaluation structure comprising internal assessments:
+                            <strong>CIA-1 (25%)</strong>, <strong>CIA-2 (25%)</strong>, <strong>Quizzes / Assignments / Lab Assessments (20%)</strong>, and the <strong>End-Semester Examination (30%)</strong>. This ensures students are evaluated consistently across the semester.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="false">
+                        <span>What is the minimum criteria to qualify for First Class with Distinction?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            To graduate with <strong>First Class with Distinction</strong>, a student must secure a cumulative CGPA of <strong>8.50 or higher</strong>, clear all courses in the first attempt without any backlogs, and complete the degree program within the standard stipulated duration.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="false">
+                        <span>What is the Re-Appear (RA) grade policy and remedial workflow?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            A total score below 50 marks results in an <strong>RA (Re-Appear / Arrear)</strong> grade with 0.0 grade points. The student is flagged for remedial mentorship sessions and must re-appear during supplementary or subsequent semester examinations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="false">
+                        <span>Can this dashboard convert SGPA into an equivalent percentage?</span>
+                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>
+                            Yes. In compliance with university and UGC standards, the equivalent percentage is computed as <code>Percentage (%) = (SGPA - 0.5) &times; 10</code>. Our interactive calculator displays this instantly for placement and higher education readiness.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Institutional Callout Strip -->
     <div class="callout-banner">
-        <div class="callout-box">
+        <div class="callout-box reveal-on-scroll">
             <div class="callout-content">
                 <h3>Designed for Karunya Academic Excellence</h3>
                 <p>Built as a focused academic micro-project to demonstrate high-efficiency grading automation and actionable student analytics.</p>
             </div>
-            <a href="#showcase" class="btn-hero-primary btn-callout">
-                <span>View Live Demo</span>
+            <a href="#calculator" class="btn-hero-primary btn-callout">
+                <span>Try Live Calculator</span>
             </a>
         </div>
     </div>
@@ -612,6 +778,105 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Back-to-Top Button with Circular Scroll Progress Ring -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Scroll to top">
+        <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+            <circle class="progress-ring-bg" stroke="rgba(37, 99, 235, 0.15)" stroke-width="3.5" fill="transparent" r="20" cx="23" cy="23"/>
+            <circle class="progress-ring-circle" id="scrollProgressCircle" stroke="#2563eb" stroke-width="3.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" fill="transparent" r="20" cx="23" cy="23"/>
+        </svg>
+        <span class="back-to-top-arrow">↑</span>
+    </button>
+
+    <!-- Interactive Simulated Marks Entry Modal (Portal Access) -->
+    <div class="modal-backdrop" id="portal-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title-wrap">
+                    <div class="modal-icon">📝</div>
+                    <div>
+                        <h3 id="modal-title">CIA Continuous Evaluation Entry Portal</h3>
+                        <p>Simulate faculty recording marks for student continuous assessment</p>
+                    </div>
+                </div>
+                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close Portal Modal">&times;</button>
+            </div>
+
+            <form class="modal-body" id="modal-marks-form">
+                <div class="form-row form-row-2">
+                    <div class="form-group">
+                        <label for="student-reg">Register Number</label>
+                        <input type="text" id="student-reg" value="URK22CS1042" placeholder="e.g. URK24CS1001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-name">Student Full Name</label>
+                        <input type="text" id="student-name" value="Kavitha R." placeholder="Student Name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="course-select">Select Academic Course</label>
+                        <select id="course-select" required>
+                            <option value="Machine Learning & AI" data-credits="4">24CS201 - Machine Learning & AI (4 Credits)</option>
+                            <option value="Database Management" data-credits="4">24CS202 - Database Management (4 Credits)</option>
+                            <option value="Computer Networks" data-credits="3">24CS203 - Computer Networks (3 Credits)</option>
+                            <option value="Design & Analysis of Algorithms" data-credits="4">24CS204 - Design & Analysis of Algorithms (4 Credits)</option>
+                            <option value="Discrete Mathematics" data-credits="4">24MA201 - Discrete Mathematics (4 Credits)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-marks-grid">
+                    <div class="form-group">
+                        <label for="mark-cia1">CIA-1 (Max 25)</label>
+                        <input type="number" id="mark-cia1" min="0" max="25" value="23" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mark-cia2">CIA-2 (Max 25)</label>
+                        <input type="number" id="mark-cia2" min="0" max="25" value="22" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mark-quiz">Quizzes (Max 20)</label>
+                        <input type="number" id="mark-quiz" min="0" max="20" value="19" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mark-endsem">End-Sem / Model (Max 30)</label>
+                        <input type="number" id="mark-endsem" min="0" max="30" value="28" required>
+                    </div>
+                </div>
+
+                <!-- Real-time Preview Pill Inside Modal -->
+                <div class="modal-preview-bar">
+                    <div class="preview-item">
+                        <span>Total Score:</span>
+                        <strong id="modal-score-preview">92 / 100</strong>
+                    </div>
+                    <div class="preview-item">
+                        <span>Predicted Grade:</span>
+                        <span class="grade-badge-sm grade-o" id="modal-grade-preview">O (10.0)</span>
+                    </div>
+                    <div class="preview-item">
+                        <span>Result Status:</span>
+                        <span class="standing-pill" id="modal-standing-preview">Passed with Distinction</span>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" id="modal-cancel-btn">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span>✓ Save &amp; Record Marks</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Global Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Standalone Celebration Confetti Canvas (Triggers on 90+ Score) -->
+    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
 
     <!-- External JavaScript File (Separate JS Architecture) -->
     <script src="script.js" defer></script>
