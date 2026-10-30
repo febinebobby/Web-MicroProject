@@ -261,12 +261,13 @@ a {
 }
 
 .nav-links li a {
-  padding: 8px 16px;
+  padding: 8px 14px;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text-muted);
   border-radius: var(--radius-sm);
   position: relative;
+  white-space: nowrap;
   transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
@@ -433,9 +434,11 @@ a {
 }
 
 .hero h2 .highlight-gradient {
-  background: linear-gradient(135deg, #93c5fd 0%, #ffffff 50%, #fcd34d 100%);
+  background: linear-gradient(135deg, #93c5fd 0%, #ffffff 30%, #fcd34d 70%, #93c5fd 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shimmerGradient 8s linear infinite;
 }
 
 .hero .tagline {
@@ -807,8 +810,20 @@ a {
 .progress-fill {
   height: 100%;
   border-radius: 999px;
-  transition: width 1s ease-in-out;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: progressShine 2.8s infinite ease-in-out;
 }
 
 .fill-emerald { background: linear-gradient(90deg, #10b981, #059669); }
@@ -1050,12 +1065,12 @@ a {
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.05em;
-  padding: 14px 24px;
+  padding: 13px 18px;
   border-bottom: 1px solid var(--border-light);
 }
 
 .grading-table td {
-  padding: 16px 24px;
+  padding: 14px 18px;
   border-bottom: 1px solid var(--border-light);
   color: var(--text-main);
 }
@@ -1424,4 +1439,593 @@ footer {
 
 .mockup-insight-banner .insight-text {
   transition: opacity 0.18s ease-in-out;
+}
+
+/* ==========================================================================
+   ACADEMIC MICRO-PROJECT: ANIMATIONS & VISUAL EFFECTS MODULE
+   Tailored for First-Year Web Development Portfolio
+   Concepts Used:
+   1. CSS @keyframes animations (floating, pulsing, shimmer, popping)
+   2. Modern Glassmorphism & Micro-Interactions (hover lifts, glowing borders)
+   3. Custom Range Slider Styling for Interactive Web Application
+   4. Scroll-Triggered Reveal Animations (.reveal-on-scroll)
+   5. Interactive Button Ripple Waves & Circular Scroll Progress Indicator
+   ========================================================================== */
+
+/* --- 1. Ambient Floating Academic Badges in Hero Section --- */
+.hero-floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.hero-float-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.hero-float-chip .chip-icon {
+  font-size: 1rem;
+}
+
+.chip-1 {
+  top: 18%;
+  left: 6%;
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.chip-2 {
+  top: 26%;
+  right: 6%;
+  animation: floatReverse 7s ease-in-out infinite 0.5s;
+}
+
+.chip-3 {
+  bottom: 24%;
+  left: 8%;
+  animation: floatReverse 8s ease-in-out infinite 1s;
+}
+
+.chip-4 {
+  bottom: 20%;
+  right: 8%;
+  animation: floatSlow 6.5s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(2deg);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+@keyframes shimmerGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Hide floating chips on small mobile screens to prevent text overlap */
+@media (max-width: 900px) {
+  .hero-floating-elements {
+    display: none;
+  }
+}
+
+/* --- 2. Interactive Subject Hint Tooltip & Mini-Card Hover --- */
+.subject-grid-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-50);
+  border: 1px dashed var(--primary-400);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  font-size: 0.8125rem;
+  color: var(--primary-800);
+  font-weight: 500;
+}
+
+.hint-sparkle {
+  color: var(--amber-500);
+  animation: pulseDot 2s infinite;
+}
+
+.subject-mini-card {
+  outline: none;
+}
+
+.subject-mini-card:focus-visible {
+  border-color: var(--primary-600);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+/* --- 3. Interactive Live Grade & SGPA Simulator Widget --- */
+.interactive-simulator-card {
+  margin-top: 24px;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.interactive-simulator-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-600), #10b981);
+}
+
+.sim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.sim-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sim-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-700);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  width: fit-content;
+}
+
+.sim-title-group h4 {
+  font-size: 1.15rem;
+  color: var(--primary-950);
+}
+
+.sim-sub {
+  font-size: 0.8125rem;
+  color: var(--text-subtle);
+}
+
+.sim-body {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 850px) {
+  .sim-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sim-input-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sim-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sim-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.sim-score-badge {
+  font-family: 'Outfit', sans-serif;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  color: var(--primary-700);
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+}
+
+.sim-score-badge .score-max {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+  font-weight: 600;
+}
+
+/* Custom Styled Range Slider */
+.sim-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.sim-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-600);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.sim-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  background: var(--primary-700);
+}
+
+.sim-range-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary-600);
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+/* Quick Score Preset Chips */
+.sim-presets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.presets-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+}
+
+.preset-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.preset-chip {
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.preset-chip:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.preset-chip.active {
+  background: var(--primary-600);
+  color: white;
+  border-color: var(--primary-600);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Reactive Simulator Results Grid */
+.sim-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.sim-result-box {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sim-result-box:hover {
+  border-color: var(--primary-400);
+}
+
+.sim-result-box.status-result {
+  grid-column: span 2;
+}
+
+.result-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-subtle);
+  margin-bottom: 6px;
+}
+
+.sim-grade-pill {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  width: fit-content;
+  padding: 2px 16px;
+  border-radius: var(--radius-sm);
+  line-height: 1.3;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sim-grade-pill.pop-anim {
+  animation: popGrade 0.35s ease;
+}
+
+@keyframes popGrade {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+.sim-point-value {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-900);
+  line-height: 1.1;
+}
+
+.result-scale {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+.sim-status-pill {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-700);
+  margin-bottom: 2px;
+}
+
+.sim-remark {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* --- 4. Interactive Quick Table Row Lookup Styling --- */
+.table-quick-lookup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.lookup-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.lookup-input-wrapper {
+  position: relative;
+}
+
+#gradeTableSearch {
+  padding: 6px 12px;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: #f8fafc;
+  color: var(--text-main);
+  width: 170px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#gradeTableSearch:focus {
+  background: #ffffff;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.lookup-status-text {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+}
+
+/* Highlighted Row Effect in Grading Table */
+.grade-row {
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.grade-row.row-active {
+  background-color: #eff6ff !important;
+  box-shadow: inset 4px 0 0 0 var(--primary-600);
+  transform: translateX(4px);
+}
+
+.grade-row.row-active td {
+  color: var(--primary-950);
+}
+
+/* --- 5. Scroll-Triggered Reveal Animation System --- */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sequential Stagger for Feature Cards & Steps */
+.cards .card.reveal-on-scroll:nth-child(1) { transition-delay: 0.06s; }
+.cards .card.reveal-on-scroll:nth-child(2) { transition-delay: 0.14s; }
+.cards .card.reveal-on-scroll:nth-child(3) { transition-delay: 0.22s; }
+
+.workflow-grid .step-card.reveal-on-scroll:nth-child(1) { transition-delay: 0.06s; }
+.workflow-grid .step-card.reveal-on-scroll:nth-child(2) { transition-delay: 0.14s; }
+.workflow-grid .step-card.reveal-on-scroll:nth-child(3) { transition-delay: 0.22s; }
+.workflow-grid .step-card.reveal-on-scroll:nth-child(4) { transition-delay: 0.30s; }
+
+/* --- 6. Click Ripple Wave Effect on Buttons --- */
+.btn-primary,
+.btn-hero-primary,
+.btn-secondary,
+.btn-hero-secondary,
+.btn-callout,
+.preset-chip {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleAnimation 0.6s linear;
+  background-color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}
+
+@keyframes rippleAnimation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* --- 7. Floating Back-to-Top Button with Scroll Progress Ring --- */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px) scale(0.9);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.back-to-top.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.25);
+  border-color: var(--primary-400);
+}
+
+.progress-ring {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.back-to-top-arrow {
+  position: relative;
+  z-index: 2;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-600);
+  line-height: 1;
+}
+
+/* --- 8. Standalone Confetti Canvas --- */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10000;
 }
