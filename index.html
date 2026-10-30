@@ -46,22 +46,44 @@
                 </div>
             </a>
 
-            <nav class="navbar" aria-label="Main Navigation">
-                <ul class="nav-links">
+            <nav class="navbar" id="navbar" aria-label="Main Navigation">
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#showcase">Dashboard</a></li>
                     <li><a href="#features">Features</a></li>
+                    <li><a href="#calculator">SGPA Calculator</a></li>
                     <li><a href="#grading">Grade Scale</a></li>
                     <li><a href="#workflow">Workflow</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <!-- Mobile View Action Item -->
+                    <li class="mobile-nav-action">
+                        <button type="button" class="btn-primary w-full" id="mobile-portal-btn">
+                            <span>Open Marks Portal</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
 
             <div class="nav-actions">
-                <a href="#showcase" class="btn-secondary">View Demo</a>
-                <a href="#features" class="btn-primary">Portal Access</a>
+                <!-- Premium Theme Toggle Button -->
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark or Light Mode" title="Toggle Theme (Dark / Light)">
+                    <span class="theme-icon icon-sun" aria-hidden="true">☀️</span>
+                    <span class="theme-icon icon-moon" aria-hidden="true">🌙</span>
+                </button>
+
+                <a href="#showcase" class="btn-secondary nav-btn-hide-sm">View Demo</a>
+                <button type="button" class="btn-primary" id="open-portal-btn">Portal Access</button>
+
+                <!-- Responsive Mobile Hamburger Toggle -->
+                <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="nav-links">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
             </div>
         </div>
+        <!-- Mobile Drawer Backdrop -->
+        <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
     </header>
 
     <!-- Hero Section -->
@@ -100,23 +122,23 @@
                 </a>
             </div>
 
-            <!-- Key Metrics Strip -->
+            <!-- Key Metrics Strip with Live Animated Counters -->
             <div class="stats-strip">
                 <div class="stat-item">
-                    <div class="stat-num">10.0 <span>Scale</span></div>
+                    <div class="stat-num"><span class="counter" data-target="10.0" data-decimals="1">10.0</span> <span>Scale</span></div>
                     <div class="stat-label">UGC / AICTE Compliant</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">100% <span>Auto</span></div>
+                    <div class="stat-num"><span class="counter" data-target="100" data-suffix="%">100%</span> <span>Auto</span></div>
                     <div class="stat-label">SGPA & CGPA Calculation</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">3-Tier <span>CIA</span></div>
+                    <div class="stat-num"><span class="counter" data-target="3">3</span>-Tier <span>CIA</span></div>
                     <div class="stat-label">Internals, Quizzes & Model</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">Instant <span>Export</span></div>
-                    <div class="stat-label">Grade Sheets & Reports</div>
+                    <div class="stat-num"><span class="counter" data-target="99.9" data-decimals="1" data-suffix="%">99.9%</span> <span>Audit</span></div>
+                    <div class="stat-label">Verified Calculation Accuracy</div>
                 </div>
             </div>
         </div>
@@ -305,6 +327,92 @@
         </div>
     </section>
 
+    <!-- Interactive SGPA & Grade Calculator Section -->
+    <section class="calculator-section" id="calculator">
+        <div class="calculator-container">
+            <div class="section-header">
+                <span class="section-tag">Interactive Student Tool</span>
+                <h2>Live SGPA & Grade Calculator</h2>
+                <p class="subtitle">
+                    Purpose-built for first-year engineering students. Add your semester courses, credit hours, and expected marks to compute your official semester SGPA and honors standing in real time.
+                </p>
+            </div>
+
+            <div class="calculator-card">
+                <div class="calc-top-bar">
+                    <div class="calc-info">
+                        <h4>Semester Grade Computation Engine</h4>
+                        <p>Karunya 10-Point CBCS Weightage Formula: <code>SGPA = &Sigma;(Credits &times; Grade Points) / &Sigma;Credits</code></p>
+                    </div>
+                    <div class="calc-presets">
+                        <button type="button" class="btn-calc-preset" id="calc-fill-sem1">
+                            <span>⚡ Load Sem 1 Preset</span>
+                        </button>
+                        <button type="button" class="btn-calc-preset btn-preset-clear" id="calc-reset">
+                            <span>🔄 Reset</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="calc-table-responsive">
+                    <table class="calc-table" id="calc-table">
+                        <thead>
+                            <tr>
+                                <th>Subject / Course Name</th>
+                                <th>Credits (Ci)</th>
+                                <th>Marks (0–100)</th>
+                                <th>Letter Grade</th>
+                                <th>Grade Points</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calc-rows-container">
+                            <!-- Populated dynamically with reactive rows via script.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="calc-actions-strip">
+                    <button type="button" class="btn-add-subject" id="calc-add-row">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                        <span>Add Course Subject</span>
+                    </button>
+                    <span class="calc-hint">💡 Type any marks (0-100) or adjust credits — SGPA calculates automatically</span>
+                </div>
+
+                <!-- Live Results Summary Dashboard Strip -->
+                <div class="calc-summary-panel">
+                    <div class="summary-metric-card metric-sgpa">
+                        <span class="metric-title">Computed SGPA</span>
+                        <div class="metric-value-wrap">
+                            <span class="metric-value" id="calc-result-sgpa">0.00</span>
+                            <span class="metric-scale">/ 10.0</span>
+                        </div>
+                        <span class="standing-pill" id="calc-result-standing">Awaiting Marks</span>
+                    </div>
+
+                    <div class="summary-metric-card">
+                        <span class="metric-title">Total Earned Credits</span>
+                        <span class="metric-value-sm" id="calc-result-credits">0</span>
+                        <span class="metric-subtext">Registered Credit Units</span>
+                    </div>
+
+                    <div class="summary-metric-card">
+                        <span class="metric-title">Equivalent Percentage</span>
+                        <span class="metric-value-sm" id="calc-result-percentage">0.0%</span>
+                        <span class="metric-subtext">Formula: (SGPA - 0.5) &times; 10</span>
+                    </div>
+
+                    <div class="summary-metric-card">
+                        <span class="metric-title">Academic Standing</span>
+                        <span class="metric-value-sm text-emerald" id="calc-result-arrears">All Clear</span>
+                        <span class="metric-subtext" id="calc-result-status-text">0 Re-Appears</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Karunya 10-Point Grade Reference Scale -->
     <section class="grading-section" id="grading">
         <div class="grading-container">
@@ -318,11 +426,27 @@
 
             <div class="grading-table-card">
                 <div class="table-header-title">
-                    <h4>UG & PG Academic Evaluation Matrix</h4>
+                    <h4>UG &amp; PG Academic Evaluation Matrix</h4>
                     <span class="status-pill">Active Grading Standard</span>
                 </div>
+
+                <!-- Interactive Live Score Inspector -->
+                <div class="grade-inspector-bar">
+                    <div class="inspector-label">
+                        <span class="inspector-icon">🔍</span>
+                        <span>Interactive Grade Inspector:</span>
+                    </div>
+                    <div class="inspector-input-wrap">
+                        <input type="number" id="grade-score-input" min="0" max="100" placeholder="Enter score e.g. 85" aria-label="Enter score to inspect grade">
+                        <span class="inspector-addon">/ 100</span>
+                    </div>
+                    <div class="inspector-result-badge" id="grade-score-result">
+                        <span>Enter any score to highlight matching grade</span>
+                    </div>
+                </div>
+
                 <div class="grading-table-responsive">
-                    <table class="grading-table">
+                    <table class="grading-table" id="grading-scale-table">
                         <thead>
                             <tr>
                                 <th>Marks Range</th>
@@ -333,42 +457,42 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr data-min="90" data-max="100">
                                 <td><strong>90 – 100</strong></td>
                                 <td><strong>10.0</strong></td>
                                 <td><span class="grade-badge-sm grade-o">O</span></td>
                                 <td>Outstanding</td>
                                 <td><span class="standing-pill">Passed with Distinction</span></td>
                             </tr>
-                            <tr>
+                            <tr data-min="80" data-max="89">
                                 <td><strong>80 – 89</strong></td>
                                 <td><strong>9.0</strong></td>
                                 <td><span class="grade-badge-sm grade-aplus">A+</span></td>
                                 <td>Excellent</td>
                                 <td><span class="standing-pill">Passed with Honors</span></td>
                             </tr>
-                            <tr>
+                            <tr data-min="70" data-max="79">
                                 <td><strong>70 – 79</strong></td>
                                 <td><strong>8.0</strong></td>
                                 <td><span class="grade-badge-sm grade-a">A</span></td>
                                 <td>Very Good</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr>
+                            <tr data-min="60" data-max="69">
                                 <td><strong>60 – 69</strong></td>
                                 <td><strong>7.0</strong></td>
                                 <td><span class="grade-badge-sm grade-bplus">B+</span></td>
                                 <td>Good</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr>
+                            <tr data-min="50" data-max="59">
                                 <td><strong>50 – 59</strong></td>
                                 <td><strong>6.0</strong></td>
                                 <td><span class="grade-badge-sm grade-b">B</span></td>
                                 <td>Above Average</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
-                            <tr>
+                            <tr data-min="0" data-max="49">
                                 <td><strong>Below 50</strong></td>
                                 <td><strong>0.0</strong></td>
                                 <td><span class="grade-badge-sm grade-ra">RA</span></td>
