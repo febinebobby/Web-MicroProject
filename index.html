@@ -177,7 +177,7 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-emerald" style="width: 93%;"></div>
+                            <div class="progress-fill fill-emerald w-93"></div>
                         </div>
                     </div>
 
@@ -192,7 +192,7 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-blue" style="width: 86%;"></div>
+                            <div class="progress-fill fill-blue w-86"></div>
                         </div>
                     </div>
 
@@ -207,7 +207,7 @@
                             <span>Credits: <strong>3.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-blue" style="width: 82%;"></div>
+                            <div class="progress-fill fill-blue w-82"></div>
                         </div>
                     </div>
 
@@ -222,7 +222,7 @@
                             <span>Credits: <strong>4.0</strong></span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill fill-purple" style="width: 76%;"></div>
+                            <div class="progress-fill fill-purple w-76"></div>
                         </div>
                     </div>
                 </div>
@@ -364,16 +364,16 @@
                             <tr>
                                 <td><strong>50 – 59</strong></td>
                                 <td><strong>6.0</strong></td>
-                                <td><span class="grade-badge-sm" style="background:#f1f5f9; color:#334155;">B</span></td>
+                                <td><span class="grade-badge-sm grade-b">B</span></td>
                                 <td>Above Average</td>
                                 <td><span class="standing-pill">Passed</span></td>
                             </tr>
                             <tr>
                                 <td><strong>Below 50</strong></td>
                                 <td><strong>0.0</strong></td>
-                                <td><span class="grade-badge-sm" style="background:#fee2e2; color:#b91c1c;">RA</span></td>
+                                <td><span class="grade-badge-sm grade-ra">RA</span></td>
                                 <td>Re-Appear / Arrear</td>
-                                <td><span class="standing-pill" style="color:#b91c1c;">Remedial Required</span></td>
+                                <td><span class="standing-pill standing-remedial">Remedial Required</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -426,7 +426,7 @@
                 <h3>Designed for Karunya Academic Excellence</h3>
                 <p>Built as a focused academic micro-project to demonstrate high-efficiency grading automation and actionable student analytics.</p>
             </div>
-            <a href="#showcase" class="btn-hero-primary" style="background: white; color: #0f2a54; border-color: white;">
+            <a href="#showcase" class="btn-hero-primary btn-callout">
                 <span>View Live Demo</span>
             </a>
         </div>
@@ -442,7 +442,7 @@
                         AI-Enhanced Student Performance Analytics & Grading Dashboard. 
                         A departmental micro-project developed for academic assessment and workflow optimization.
                     </p>
-                    <p style="font-size: 0.82rem; color: #64748b;">
+                    <p class="footer-address">
                         Karunya Nagar, Coimbatore, Tamil Nadu 641114, India
                     </p>
                 </div>
@@ -480,68 +480,16 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
+                <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
                 <div class="footer-bottom-badge">
                     <span class="pulse-dot"></span>
-                    <span>System v2.4 • Pure HTML5 &amp; CSS3</span>
+                    <span>System v2.4 • Pure HTML5, CSS3 &amp; JS</span>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Navigation Highlighting -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const sections = document.querySelectorAll('section[id], footer[id]');
-            let isClickScrolling = false;
-
-            function highlightNav(targetId) {
-                navLinks.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href === `#${targetId}`) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-            }
-
-            // Click Handler: Immediately highlight selected link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href.startsWith('#')) {
-                        const targetId = href.substring(1);
-                        highlightNav(targetId);
-                        
-                        // Temporarily disable scroll-triggered updates while smooth scrolling
-                        isClickScrolling = true;
-                        setTimeout(() => {
-                            isClickScrolling = false;
-                        }, 800);
-                    }
-                });
-            });
-
-            // Scrollspy: Automatically highlight matching section during scroll
-            const observerOptions = {
-                root: null,
-                rootMargin: '-25% 0px -65% 0px',
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                if (isClickScrolling) return;
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        highlightNav(entry.target.id);
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
+    <!-- External JavaScript File (Separate JS Architecture) -->
+    <script src="script.js" defer></script>
 </body>
 </html>

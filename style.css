@@ -1368,3 +1368,60 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Utility & Modular Helper Classes
+   Eliminates inline styles for clean HTML / CSS / JS separation
+   ========================================================================== */
+
+/* Progress Bar Percentage Widths */
+.w-93 { width: 93%; }
+.w-86 { width: 86%; }
+.w-82 { width: 82%; }
+.w-76 { width: 76%; }
+
+/* Grading Table Badges & Status */
+.grade-badge-sm.grade-b {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.grade-badge-sm.grade-ra {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.standing-pill.standing-remedial {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+/* Institutional Callout Banner Button */
+.btn-callout {
+  background: #ffffff;
+  color: #0f2a54;
+  border-color: #ffffff;
+}
+
+.btn-callout:hover {
+  background: #f8fafc;
+  color: #07152b;
+}
+
+/* Footer Institutional Address */
+.footer-address {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+/* Interactive Subject Selection Feedback */
+.subject-mini-card.selected-card {
+  border-color: var(--primary-600);
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2), var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.mockup-insight-banner .insight-text {
+  transition: opacity 0.18s ease-in-out;
+}
