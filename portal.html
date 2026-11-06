@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Continuous Internal Assessment (CIA) Marks Entry Portal - Karunya Institute of Technology and Sciences. Faculty evaluation recording, real-time score summation, and automated grade determination.">
+    <title>Faculty Marks Portal | Karunya Analytics</title>
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- External Unified Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Institutional Banner -->
+    <div class="top-banner" role="region" aria-label="Institutional Accreditation Bar">
+        <div class="banner-inner">
+            <div class="banner-left">
+                <span class="badge-accreditation">NAAC A++</span>
+                <span>Karunya Institute of Technology and Sciences (Deemed-to-be University)</span>
+            </div>
+            <div class="banner-right">
+                <span>UGC &amp; AICTE Approved</span>
+                <span class="bullet-dot" aria-hidden="true">&bull;</span>
+                <span>Session: 2026&ndash;2027</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Main Navigation Header -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="brand" aria-label="Home">
+                <div class="brand-icon-wrapper">
+                    🎓
+                </div>
+                <div class="brand-text">
+                    <h1>Karunya Analytics</h1>
+                    <span>Student Performance System</span>
+                </div>
+            </a>
+
+            <nav class="navbar" id="navbar" aria-label="Main Navigation">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="calculator.html">SGPA Calculator</a></li>
+                    <li><a href="portal.html" class="active">Marks Portal</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#workflow">Workflow</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <!-- Mobile View Action Item -->
+                    <li class="mobile-nav-action">
+                        <a href="dashboard.html" class="btn-primary w-full">
+                            <span>Open Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Premium Theme Toggle Button -->
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark or Light Mode" title="Toggle Theme (Dark / Light)">
+                    <span class="theme-icon icon-sun" aria-hidden="true">☀️</span>
+                    <span class="theme-icon icon-moon" aria-hidden="true">🌙</span>
+                </button>
+
+                <a href="dashboard.html" class="btn-secondary nav-btn-hide-sm">View Dashboard</a>
+                <a href="portal.html" class="btn-primary" style="box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);">Portal Active</a>
+
+                <!-- Responsive Mobile Hamburger Toggle -->
+                <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="nav-links">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Drawer Backdrop -->
+        <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <!-- Dedicated Page Hero Header -->
+    <div class="page-hero">
+        <div class="page-hero-container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">Faculty Assessment Portal</span>
+            </div>
+            <h1>Continuous Internal Assessment (CIA) Entry Portal</h1>
+            <p>Faculty mark recording, 3-tier continuous evaluation, and instant UGC 10-point grade determination under Karunya CBCS Regulation 2024.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Workspace -->
+    <main class="page-content-wrapper">
+        <div class="portal-layout-grid">
+            <!-- Left Column: Mark Entry Form -->
+            <div class="portal-card">
+                <div class="portal-card-header">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 1.5rem;">📝</span>
+                        <div>
+                            <h3 style="margin: 0;">Record Continuous Assessment Marks</h3>
+                            <span style="font-size: 0.8125rem; color: var(--text-subtle);">Direct evaluation entry into institutional database</span>
+                        </div>
+                    </div>
+                    <span class="status-pill">Faculty Portal</span>
+                </div>
+
+                <form id="portal-marks-form" style="display: flex; flex-direction: column; gap: 18px;">
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="student-reg">Student Register Number</label>
+                            <input type="text" id="student-reg" value="URK22CS1042" placeholder="e.g. URK24CS1001" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="student-name">Student Full Name</label>
+                            <input type="text" id="student-name" value="Kavitha R." placeholder="Student Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="course-select">Select Academic Course / Subject</label>
+                            <select id="course-select" required>
+                                <option value="Machine Learning &amp; AI" data-credits="4">24CS201 &ndash; Machine Learning &amp; AI (4 Credits)</option>
+                                <option value="Database Management" data-credits="4">24CS202 &ndash; Database Management (4 Credits)</option>
+                                <option value="Computer Networks" data-credits="3">24CS203 &ndash; Computer Networks (3 Credits)</option>
+                                <option value="Design &amp; Analysis of Algorithms" data-credits="4">24CS204 &ndash; Design &amp; Analysis of Algorithms (4 Credits)</option>
+                                <option value="Discrete Mathematics" data-credits="4">24MA201 &ndash; Discrete Mathematics (4 Credits)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-marks-grid">
+                        <div class="form-group">
+                            <label for="mark-cia1">CIA-1 (Max 25)</label>
+                            <input type="number" id="mark-cia1" min="0" max="25" value="23" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mark-cia2">CIA-2 (Max 25)</label>
+                            <input type="number" id="mark-cia2" min="0" max="25" value="22" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mark-quiz">Quizzes (Max 20)</label>
+                            <input type="number" id="mark-quiz" min="0" max="20" value="19" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mark-endsem">Model / Lab (Max 30)</label>
+                            <input type="number" id="mark-endsem" min="0" max="30" value="28" required>
+                        </div>
+                    </div>
+
+                    <!-- Real-time Computed Score Pill -->
+                    <div class="modal-preview-bar" style="margin-top: 6px;">
+                        <div class="preview-item">
+                            <span>Computed Total:</span>
+                            <strong id="modal-score-preview">92 / 100</strong>
+                        </div>
+                        <div class="preview-item">
+                            <span>Predicted Grade:</span>
+                            <span class="grade-badge-sm grade-o" id="modal-grade-preview">O (10.0)</span>
+                        </div>
+                        <div class="preview-item">
+                            <span>CBCS Standing:</span>
+                            <span class="standing-pill" id="modal-standing-preview">Passed with Distinction</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions Strip -->
+                    <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">
+                        <button type="submit" class="btn-primary" style="flex: 1;">
+                            <span>✓ Record &amp; Submit Assessment</span>
+                        </button>
+                        <button type="button" class="btn-secondary" id="portal-sample-btn" onclick="document.getElementById('mark-cia1').value=24; document.getElementById('mark-cia2').value=25; document.getElementById('mark-quiz').value=20; document.getElementById('mark-endsem').value=28; document.getElementById('mark-cia1').dispatchEvent(new Event('input')); showToast('Sample high distinction scores loaded!', 'info');">
+                            ⚡ Sample 97 (O)
+                        </button>
+                        <button type="reset" class="btn-secondary" onclick="setTimeout(() => document.getElementById('mark-cia1').dispatchEvent(new Event('input')), 50);">
+                            🔄 Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Column: Policy & Recent Audit Table -->
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <!-- Policy Guidelines Card -->
+                <div class="portal-policy-box">
+                    <h4>🏛️ Karunya CIA Evaluation Weightage Rubrics</h4>
+                    <ul>
+                        <li><strong>CIA Test 1 (25%):</strong> Evaluates Units I &amp; II analytical formulation.</li>
+                        <li><strong>CIA Test 2 (25%):</strong> Evaluates Units III &amp; IV implementation problem sets.</li>
+                        <li><strong>Quizzes &amp; Assignments (20%):</strong> Continuous weekly technical problem solving.</li>
+                        <li><strong>Model Exam (30%):</strong> Comprehensive pre-university simulated examination.</li>
+                        <li><strong>Minimum Pass Mark:</strong> 50% aggregate score (Grade B, 6.0 Grade Points).</li>
+                    </ul>
+                </div>
+
+                <!-- Recent Saved Evaluation Entries -->
+                <div class="portal-card">
+                    <div class="portal-card-header">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span>📋</span>
+                            <h3 style="margin: 0; font-size: 1.1rem;">Recent Assessment Records</h3>
+                        </div>
+                        <span class="status-pill">Audit Trail</span>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="portal-recent-table">
+                            <thead>
+                                <tr>
+                                    <th>Reg No</th>
+                                    <th>Student</th>
+                                    <th>Score</th>
+                                    <th>Grade</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>URK22CS1042</strong></td>
+                                    <td>Kavitha R.</td>
+                                    <td>92 / 100</td>
+                                    <td><span class="grade-badge-sm grade-o">O</span></td>
+                                    <td><span class="standing-pill">Distinction</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>URK22CS1015</strong></td>
+                                    <td>Aaron Philip</td>
+                                    <td>86 / 100</td>
+                                    <td><span class="grade-badge-sm grade-aplus">A+</span></td>
+                                    <td><span class="standing-pill">Honors</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>URK22CS1088</strong></td>
+                                    <td>Sneha Miriam</td>
+                                    <td>78 / 100</td>
+                                    <td><span class="grade-badge-sm grade-a">A</span></td>
+                                    <td><span class="standing-pill">Very Good</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>URK22CS1104</strong></td>
+                                    <td>Jerome D.</td>
+                                    <td>65 / 100</td>
+                                    <td><span class="grade-badge-sm grade-bplus">B+</span></td>
+                                    <td><span class="standing-pill">Good</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <button type="button" class="btn-secondary" onclick="showToast('✓ Grade Sheet exported successfully (CSV)!', 'success'); if(window.fireConfetti) window.fireConfetti();">
+                            📥 Export Grade Sheet (CSV)
+                        </button>
+                        <a href="dashboard.html" class="btn-hero-primary" style="padding: 9px 18px; font-size: 0.85rem;">
+                            View Analytics Dashboard &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand">
+                    <div class="brand-icon-wrapper">🎓</div>
+                    <div class="brand-text">
+                        <h3>Karunya Analytics</h3>
+                        <span>Academic Excellence Platform</span>
+                    </div>
+                </div>
+                <p>
+                    Engineered for continuous assessment transparency, student academic empowerment, and UGC-compliant 10-point GPA calculation.
+                </p>
+                <div class="accreditation-pill">
+                    <span class="star-icon">★</span>
+                    <span>NAAC A++ Accredited Institutional Standards</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home Overview</a></li>
+                    <li><a href="dashboard.html">Live Analytics Dashboard</a></li>
+                    <li><a href="calculator.html">SGPA &amp; CGPA Calculator</a></li>
+                    <li><a href="portal.html">Continuous Evaluation Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academic Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="calculator.html#grading">10-Point Grade Scale</a></li>
+                    <li><a href="index.html#workflow">4-Step Evaluation Workflow</a></li>
+                    <li><a href="index.html#features">Regulation Features</a></li>
+                    <li><a href="index.html#faq">Academic FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Institutional Hub</h4>
+                <p class="institution-address">
+                    Karunya Institute of Technology and Sciences<br>
+                    Karunya Nagar, Coimbatore &ndash; 641 114<br>
+                    Tamil Nadu, India.
+                </p>
+                <div class="tech-badge">
+                    <span>CBCS Regulation 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button with Circular Scroll Progress -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Scroll to top">
+        <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+            <circle class="progress-ring-bg" stroke="rgba(124, 58, 237, 0.15)" stroke-width="3.5" fill="transparent" r="20" cx="23" cy="23"/>
+            <circle class="progress-ring-circle" id="scrollProgressCircle" stroke="#8b5cf6" stroke-width="3.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" fill="transparent" r="20" cx="23" cy="23"/>
+        </svg>
+        <span class="back-to-top-arrow">&uarr;</span>
+    </button>
+
+    <!-- Global Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Standalone Celebration Confetti Canvas (Triggers on 90+ Score) -->
+    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+    <!-- External JavaScript File (Separate JS Architecture) -->
+    <script src="script.js" defer></script>
+</body>
+</html>

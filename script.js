@@ -162,13 +162,22 @@ function initNavigationScrollSpy() {
     const sections = document.querySelectorAll('section[id], footer[id]');
     let isClickScrolling = false;
 
+    // Only run scrollspy if there are in-page hash links matching page sections
+    const hasHashLinks = Array.from(navLinks).some(l => {
+        const h = l.getAttribute('href');
+        return h && h.startsWith('#') && h.length > 1;
+    });
+    if (!hasHashLinks || !sections.length) return;
+
     function highlightNav(targetId) {
         navLinks.forEach(link => {
             const href = link.getAttribute('href');
-            if (href === `#${targetId}`) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
+            if (href && href.startsWith('#')) {
+                if (href === `#${targetId}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
             }
         });
     }
@@ -718,7 +727,6 @@ function initGradeTableLookup() {
         if (query === '') {
             tableRows.forEach(row => row.classList.remove('row-active'));
             if (resultBadge) resultBadge.innerHTML = '<span>Enter any score to highlight matching grade</span>';
-            if (statusText) statusText.textContent = 'Type score to highlight row';
             return;
         }
 
@@ -726,7 +734,6 @@ function initGradeTableLookup() {
         if (isNaN(mark) || mark < 0 || mark > 100) {
             tableRows.forEach(row => row.classList.remove('row-active'));
             if (resultBadge) resultBadge.innerHTML = '<span class="text-danger">Please enter a valid mark (0–100)</span>';
-            if (statusText) statusText.textContent = 'Please enter a valid mark (0 - 100)';
             return;
         }
 
@@ -772,7 +779,7 @@ function initPortalModal() {
 
     const closeBtn = document.getElementById('modal-close-btn');
     const cancelBtn = document.getElementById('modal-cancel-btn');
-    const form = document.getElementById('modal-marks-form');
+    const form = document.getElementById('modal-marks-form') || document.getElementById('portal-marks-form');
 
     const cia1Input = document.getElementById('mark-cia1');
     const cia2Input = document.getElementById('mark-cia2');
@@ -782,6 +789,29 @@ function initPortalModal() {
     const scorePreview = document.getElementById('modal-score-preview');
     const gradePreview = document.getElementById('modal-grade-preview');
     const standingPreview = document.getElementById('modal-standing-preview');
+
+    // Always wire inputs for live calculation (whether modal or standalone portal page)
+    [cia1Input, cia2Input, quizInput, endsemInput].filter(Boolean).forEach(input => {
+        input.addEventListener('input', updateModalPreview);
+    });
+    updateModalPreview();
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const regNo = document.getElementById('student-reg')?.value || 'URK24CS1042';
+            const course = document.getElementById('course-select')?.value || 'Course';
+
+            if (modal && modal.classList.contains('is-open')) {
+                closeModal();
+            }
+            showToast(`✓ Continuous assessment marks recorded for ${regNo} (${course})!`, 'success');
+
+            if (window.fireConfetti) {
+                window.fireConfetti();
+            }
+        });
+    }
 
     if (!modal) return;
 

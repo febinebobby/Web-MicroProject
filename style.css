@@ -4654,3 +4654,302 @@ footer {
     height: 42px;
   }
 }
+
+/* ==========================================================================
+   Multi-Page Dedicated Layouts (Dashboard, Portal, Calculator)
+   ========================================================================== */
+
+/* Dedicated Page Hero Banner */
+.page-hero {
+  position: relative;
+  background: radial-gradient(130% 100% at 50% 0%, #2e1065 0%, #0a0118 80%, #0a0118 100%);
+  color: white;
+  padding: 60px 24px 50px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-hero-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: #a78bfa;
+  margin-bottom: 14px;
+}
+
+.breadcrumb-nav a {
+  color: #c4b5fd;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb-nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.breadcrumb-nav .separator {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.breadcrumb-nav .current {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.page-hero h1 {
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.page-hero p {
+  color: #cbd5e1;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+/* Dedicated Page Content Container */
+.page-content-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* Landing Page Module Preview Grid */
+.module-preview-section {
+  padding: 70px 24px 60px;
+  background: var(--bg-page);
+}
+
+.module-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: var(--max-width);
+  margin: 40px auto 0;
+}
+
+.module-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-600), var(--primary-400));
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.module-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--primary-400);
+}
+
+.module-card:hover::before {
+  opacity: 1;
+}
+
+.module-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-lg);
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--primary-600);
+  margin-bottom: 20px;
+}
+
+.module-card h3 {
+  font-size: 1.35rem;
+  color: var(--text-main);
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.module-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.module-card-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.module-card-features li {
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.module-card-features li .check-icon {
+  color: var(--emerald-500);
+  font-weight: 800;
+}
+
+/* Dedicated Portal Page Two-Column Layout */
+.portal-layout-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.portal-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.portal-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.portal-card-header h3 {
+  font-size: 1.25rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.portal-recent-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 14px;
+}
+
+.portal-recent-table th {
+  text-align: left;
+  padding: 10px 12px;
+  background: var(--bg-subtle);
+  color: var(--text-subtle);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.portal-recent-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-main);
+}
+
+.portal-recent-table tr:hover {
+  background: var(--bg-subtle);
+}
+
+.portal-policy-box {
+  background: var(--primary-50);
+  border: 1px solid var(--primary-100);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  margin-bottom: 24px;
+}
+
+.portal-policy-box h4 {
+  font-size: 0.92rem;
+  color: var(--primary-800);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.portal-policy-box ul {
+  padding-left: 20px;
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--primary-700);
+  line-height: 1.6;
+}
+
+/* Dark Mode Overrides for Multi-Page Layouts */
+[data-theme="dark"] .page-hero {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .module-card,
+[data-theme="dark"] .portal-card {
+  background: #0d0821;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .module-card-icon {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+[data-theme="dark"] .portal-recent-table th {
+  background: #160b2e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .portal-recent-table td {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .portal-policy-box {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.25);
+}
+
+[data-theme="dark"] .portal-policy-box h4 {
+  color: #c4b5fd;
+}
+
+[data-theme="dark"] .portal-policy-box ul {
+  color: #ddd6fe;
+}
+
+@media (max-width: 1024px) {
+  .module-preview-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-layout-grid {
+    grid-template-columns: 1fr;
+  }
+}

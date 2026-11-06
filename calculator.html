@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CBCS SGPA & CGPA Calculator - Karunya Institute of Technology and Sciences. Interactive semester credit weighting, arrear audit, and official 10-point UGC grade inspection.">
+    <title>SGPA Calculator &amp; 10-Point Grade Scale | Karunya Analytics</title>
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- External Unified Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Top Institutional Banner -->
+    <div class="top-banner" role="region" aria-label="Institutional Accreditation Bar">
+        <div class="banner-inner">
+            <div class="banner-left">
+                <span class="badge-accreditation">NAAC A++</span>
+                <span>Karunya Institute of Technology and Sciences (Deemed-to-be University)</span>
+            </div>
+            <div class="banner-right">
+                <span>UGC &amp; AICTE Approved</span>
+                <span class="bullet-dot" aria-hidden="true">&bull;</span>
+                <span>Session: 2026&ndash;2027</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Main Navigation Header -->
+    <header class="header-nav">
+        <div class="nav-container">
+            <a href="index.html" class="brand" aria-label="Home">
+                <div class="brand-icon-wrapper">
+                    🎓
+                </div>
+                <div class="brand-text">
+                    <h1>Karunya Analytics</h1>
+                    <span>Student Performance System</span>
+                </div>
+            </a>
+
+            <nav class="navbar" id="navbar" aria-label="Main Navigation">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="calculator.html" class="active">SGPA Calculator</a></li>
+                    <li><a href="portal.html">Marks Portal</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="index.html#workflow">Workflow</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                    <!-- Mobile View Action Item -->
+                    <li class="mobile-nav-action">
+                        <a href="portal.html" class="btn-primary w-full">
+                            <span>Open Marks Portal</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Premium Theme Toggle Button -->
+                <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark or Light Mode" title="Toggle Theme (Dark / Light)">
+                    <span class="theme-icon icon-sun" aria-hidden="true">☀️</span>
+                    <span class="theme-icon icon-moon" aria-hidden="true">🌙</span>
+                </button>
+
+                <a href="dashboard.html" class="btn-secondary nav-btn-hide-sm">View Demo</a>
+                <a href="portal.html" class="btn-primary">Portal Access</a>
+
+                <!-- Responsive Mobile Hamburger Toggle -->
+                <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="nav-links">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Drawer Backdrop -->
+        <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+    </header>
+
+    <!-- Dedicated Page Hero Header -->
+    <div class="page-hero">
+        <div class="page-hero-container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">CBCS SGPA Calculator</span>
+            </div>
+            <h1>CBCS SGPA Calculator &amp; Official Grade Scale</h1>
+            <p>Purpose-built computation engine for first-year engineering students. Add your registered courses, credit weights, and expected marks to dynamically calculate your official semester SGPA.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Workspace -->
+    <main class="page-content-wrapper">
+        <!-- Interactive SGPA & Grade Calculator Section -->
+        <section class="calculator-section" id="calculator" style="padding: 0 0 60px 0;">
+            <div class="calculator-container" style="max-width: 100%; padding: 0;">
+                <div class="calculator-card" style="box-shadow: var(--shadow-lg);">
+                    <div class="calc-top-bar">
+                        <div class="calc-info">
+                            <h4>Semester Grade Point Average Computation Engine</h4>
+                            <p>Karunya 10-Point CBCS Weightage Formula: <code>SGPA = &Sigma;(Credits &times; Grade Points) / &Sigma;Credits</code></p>
+                        </div>
+                        <div class="calc-presets">
+                            <button type="button" class="btn-calc-preset" id="calc-fill-sem1">
+                                <span>⚡ Load Sem 1 Preset</span>
+                            </button>
+                            <button type="button" class="btn-calc-preset btn-preset-clear" id="calc-reset">
+                                <span>🔄 Reset</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="calc-table-responsive">
+                        <table class="calc-table" id="calc-table">
+                            <thead>
+                                <tr>
+                                    <th>Subject / Course Name</th>
+                                    <th>Credits (Ci)</th>
+                                    <th>Marks (0&ndash;100)</th>
+                                    <th>Letter Grade</th>
+                                    <th>Grade Points</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="calc-rows-container">
+                                <!-- Populated dynamically with reactive rows via script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="calc-actions-strip">
+                        <button type="button" class="btn-add-subject" id="calc-add-row">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            <span>Add Course Subject</span>
+                        </button>
+                        <span class="calc-hint">💡 Type any marks (0-100) or adjust credits &mdash; SGPA calculates automatically in real-time</span>
+                    </div>
+
+                    <!-- Live Results Summary Dashboard Strip -->
+                    <div class="calc-summary-panel">
+                        <div class="summary-metric-card metric-sgpa">
+                            <span class="metric-title">Computed SGPA</span>
+                            <div class="metric-value-wrap">
+                                <span class="metric-value" id="calc-result-sgpa">0.00</span>
+                                <span class="metric-scale">/ 10.0</span>
+                            </div>
+                            <span class="standing-pill" id="calc-result-standing">Awaiting Marks</span>
+                        </div>
+
+                        <div class="summary-metric-card">
+                            <span class="metric-title">Total Earned Credits</span>
+                            <span class="metric-value-sm" id="calc-result-credits">0</span>
+                            <span class="metric-subtext">Registered Credit Units</span>
+                        </div>
+
+                        <div class="summary-metric-card">
+                            <span class="metric-title">Equivalent Percentage</span>
+                            <span class="metric-value-sm" id="calc-result-percentage">0.0%</span>
+                            <span class="metric-subtext">Formula: (SGPA - 0.5) &times; 10</span>
+                        </div>
+
+                        <div class="summary-metric-card">
+                            <span class="metric-title">Academic Standing</span>
+                            <span class="metric-value-sm text-emerald" id="calc-result-arrears">All Clear</span>
+                            <span class="metric-subtext" id="calc-result-status-text">0 Re-Appears</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Karunya 10-Point Grade Reference Scale -->
+        <section class="grading-section" id="grading" style="padding: 0 0 60px 0;">
+            <div class="grading-container" style="max-width: 100%; padding: 0;">
+                <div class="section-header">
+                    <span class="section-tag">University Regulations</span>
+                    <h2>Karunya 10-Point Grading Scale</h2>
+                    <p class="subtitle">
+                        Official evaluation benchmarks utilized by this platform for semester grade point calculations.
+                    </p>
+                </div>
+
+                <div class="grading-table-card" style="box-shadow: var(--shadow-lg);">
+                    <div class="table-header-title">
+                        <h4>UG &amp; PG Academic Evaluation Matrix</h4>
+                        <span class="status-pill">Active Grading Standard</span>
+                    </div>
+
+                    <!-- Interactive Live Score Inspector -->
+                    <div class="grade-inspector-bar">
+                        <div class="inspector-label">
+                            <span class="inspector-icon">🔍</span>
+                            <span>Interactive Grade Inspector:</span>
+                        </div>
+                        <div class="inspector-input-wrap">
+                            <input type="number" id="grade-score-input" min="0" max="100" placeholder="Enter score e.g. 85" aria-label="Enter score to inspect grade">
+                        </div>
+                        <div class="inspector-result-badge" id="grade-score-result">
+                            <span>Type any mark above to highlight matching grade row</span>
+                        </div>
+                    </div>
+
+                    <div class="grading-table-responsive">
+                        <table class="grading-table">
+                            <thead>
+                                <tr>
+                                    <th>Letter Grade</th>
+                                    <th>Grade Point</th>
+                                    <th>Marks Range</th>
+                                    <th>Academic Standing</th>
+                                    <th>Descriptor / Viva Guidance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-min="90" data-max="100">
+                                    <td><span class="grade-badge-sm grade-o">O</span></td>
+                                    <td><strong>10.0</strong></td>
+                                    <td>90 &ndash; 100</td>
+                                    <td><span class="standing-pill">Outstanding</span></td>
+                                    <td>Exceptional mastery of core theoretical &amp; laboratory outcomes.</td>
+                                </tr>
+                                <tr data-min="80" data-max="89">
+                                    <td><span class="grade-badge-sm grade-aplus">A+</span></td>
+                                    <td><strong>9.0</strong></td>
+                                    <td>80 &ndash; 89</td>
+                                    <td><span class="standing-pill">Excellent</span></td>
+                                    <td>Demonstrates analytical precision with superior continuous evaluation.</td>
+                                </tr>
+                                <tr data-min="70" data-max="79">
+                                    <td><span class="grade-badge-sm grade-a">A</span></td>
+                                    <td><strong>8.0</strong></td>
+                                    <td>70 &ndash; 79</td>
+                                    <td><span class="standing-pill">Very Good</span></td>
+                                    <td>Comprehensive subject understanding with strong problem solving.</td>
+                                </tr>
+                                <tr data-min="60" data-max="69">
+                                    <td><span class="grade-badge-sm grade-bplus">B+</span></td>
+                                    <td><strong>7.0</strong></td>
+                                    <td>60 &ndash; 69</td>
+                                    <td><span class="standing-pill">Good</span></td>
+                                    <td>Satisfactory foundational grasp with complete course fulfillment.</td>
+                                </tr>
+                                <tr data-min="50" data-max="59">
+                                    <td><span class="grade-badge-sm grade-b">B</span></td>
+                                    <td><strong>6.0</strong></td>
+                                    <td>50 &ndash; 59</td>
+                                    <td><span class="standing-pill">Above Average</span></td>
+                                    <td>Threshold competence; meets basic curricular passing requirements.</td>
+                                </tr>
+                                <tr data-min="0" data-max="49">
+                                    <td><span class="grade-badge-sm grade-ra">RA</span></td>
+                                    <td><strong>0.0</strong></td>
+                                    <td>Below 50</td>
+                                    <td><span class="standing-pill standing-remedial">Re-Appear</span></td>
+                                    <td>Course outcomes unfulfilled; remedial mentorship required.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CBCS Mathematical Formula Viva Card -->
+        <div class="portal-card" style="margin-top: 20px;">
+            <div class="portal-card-header">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 1.5rem;">📐</span>
+                    <div>
+                        <h3 style="margin: 0;">CBCS Formula Reference &amp; Viva Insights</h3>
+                        <span style="font-size: 0.8125rem; color: var(--text-subtle);">Official mathematical formulas for Choice Based Credit System (CBCS)</span>
+                    </div>
+                </div>
+                <span class="status-pill">Regulation 2024</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+                    <h4 style="font-size: 1rem; color: var(--primary-700); margin-bottom: 8px;">1. Semester Grade Point Average (SGPA)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                        The weighted average of grade points earned in all courses registered during the semester:
+                    </p>
+                    <div style="background: var(--bg-surface); padding: 12px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--primary-600); border: 1px dashed var(--primary-400);">
+                        SGPA = &Sigma;(C<sub>i</sub> &times; GP<sub>i</sub>) / &Sigma;C<sub>i</sub>
+                    </div>
+                    <span style="display: block; font-size: 0.78rem; color: var(--text-subtle); margin-top: 8px;">
+                        Where C<sub>i</sub> = Course Credits, GP<sub>i</sub> = Grade Points earned (0.0 to 10.0).
+                    </span>
+                </div>
+
+                <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+                    <h4 style="font-size: 1rem; color: var(--primary-700); margin-bottom: 8px;">2. Cumulative Grade Point Average (CGPA)</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                        The cumulative weighted average of all credits and grade points earned across all completed semesters:
+                    </p>
+                    <div style="background: var(--bg-surface); padding: 12px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--primary-600); border: 1px dashed var(--primary-400);">
+                        CGPA = &Sigma;(C<sub>k</sub> &times; GP<sub>k</sub>) / &Sigma;C<sub>k</sub>
+                    </div>
+                    <span style="display: block; font-size: 0.78rem; color: var(--text-subtle); margin-top: 8px;">
+                        Computed at the end of every semester until degree conferral.
+                    </span>
+                </div>
+
+                <div style="background: var(--bg-subtle); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-light);">
+                    <h4 style="font-size: 1rem; color: var(--primary-700); margin-bottom: 8px;">3. Percentage Equivalence Formula</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                        AICTE &amp; Karunya standard conversion formula from 10-point scale to equivalent marks percentage:
+                    </p>
+                    <div style="background: var(--bg-surface); padding: 12px; border-radius: var(--radius-md); font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--primary-600); border: 1px dashed var(--primary-400);">
+                        Percentage (%) = (SGPA &minus; 0.5) &times; 10
+                    </div>
+                    <span style="display: block; font-size: 0.78rem; color: var(--text-subtle); margin-top: 8px;">
+                        Example: SGPA 9.24 equates to (9.24 - 0.5) &times; 10 = 87.4%.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="about">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand">
+                    <div class="brand-icon-wrapper">🎓</div>
+                    <div class="brand-text">
+                        <h3>Karunya Analytics</h3>
+                        <span>Academic Excellence Platform</span>
+                    </div>
+                </div>
+                <p>
+                    Engineered for continuous assessment transparency, student academic empowerment, and UGC-compliant 10-point GPA calculation.
+                </p>
+                <div class="accreditation-pill">
+                    <span class="star-icon">★</span>
+                    <span>NAAC A++ Accredited Institutional Standards</span>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Platform Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home Overview</a></li>
+                    <li><a href="dashboard.html">Live Analytics Dashboard</a></li>
+                    <li><a href="calculator.html">SGPA &amp; CGPA Calculator</a></li>
+                    <li><a href="portal.html">Continuous Evaluation Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academic Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="calculator.html#grading">10-Point Grade Scale</a></li>
+                    <li><a href="index.html#workflow">4-Step Evaluation Workflow</a></li>
+                    <li><a href="index.html#features">Regulation Features</a></li>
+                    <li><a href="index.html#faq">Academic FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Institutional Hub</h4>
+                <p class="institution-address">
+                    Karunya Institute of Technology and Sciences<br>
+                    Karunya Nagar, Coimbatore &ndash; 641 114<br>
+                    Tamil Nadu, India.
+                </p>
+                <div class="tech-badge">
+                    <span>CBCS Regulation 2024</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button with Circular Scroll Progress -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Scroll to top">
+        <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
+            <circle class="progress-ring-bg" stroke="rgba(124, 58, 237, 0.15)" stroke-width="3.5" fill="transparent" r="20" cx="23" cy="23"/>
+            <circle class="progress-ring-circle" id="scrollProgressCircle" stroke="#8b5cf6" stroke-width="3.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" fill="transparent" r="20" cx="23" cy="23"/>
+        </svg>
+        <span class="back-to-top-arrow">&uarr;</span>
+    </button>
+
+    <!-- Global Toast Notifications Container -->
+    <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Standalone Celebration Confetti Canvas (Triggers on 90+ Score) -->
+    <canvas id="confettiCanvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+    <!-- External JavaScript File (Separate JS Architecture) -->
+    <script src="script.js" defer></script>
+</body>
+</html>

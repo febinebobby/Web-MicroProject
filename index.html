@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Student Performance Analytics | Karunya Institute of Technology and Sciences</title>
-    <meta name="description" content="AI Student Performance Analytics Dashboard for Karunya Institute of Technology and Sciences. Track student marks, compute SGPA/CGPA, and gain actionable academic insights.">
-    <!-- Google Fonts -->
+    <meta name="description" content="AI Student Performance Analytics Platform - Karunya Institute of Technology and Sciences. Next-generation academic evaluation, continuous assessment tracking, and automated 10-point SGPA calculations.">
+    <title>Karunya Analytics | Student Performance &amp; Evaluation System</title>
+
+    <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- External Unified Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Institutional Top Utility Bar -->
-    <div class="top-banner">
-        <div class="top-banner-inner">
-            <div class="top-banner-info">
-                <span class="institute-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                    Karunya Institute of Technology and Sciences
-                </span>
-                <span class="department-tag">• Deemed to be University • NAAC A++ Accredited</span>
+    <!-- Top Institutional Banner -->
+    <div class="top-banner" role="region" aria-label="Institutional Accreditation Bar">
+        <div class="banner-inner">
+            <div class="banner-left">
+                <span class="badge-accreditation">NAAC A++</span>
+                <span>Karunya Institute of Technology and Sciences (Deemed-to-be University)</span>
             </div>
-            <div class="top-banner-status">
-                <span class="status-pill">
-                    <span class="pulse-dot"></span>
-                    Grading Portal Online
-                </span>
-                <span>Session: 2026–2027</span>
+            <div class="banner-right">
+                <span>UGC &amp; AICTE Approved</span>
+                <span class="bullet-dot" aria-hidden="true">&bull;</span>
+                <span>Session: 2026&ndash;2027</span>
             </div>
         </div>
     </div>
@@ -36,7 +32,7 @@
     <!-- Sticky Main Navigation Header -->
     <header class="header-nav">
         <div class="nav-container">
-            <a href="#" class="brand" aria-label="Home">
+            <a href="index.html" class="brand" aria-label="Home">
                 <div class="brand-icon-wrapper">
                     🎓
                 </div>
@@ -48,18 +44,18 @@
 
             <nav class="navbar" id="navbar" aria-label="Main Navigation">
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#showcase">Dashboard</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="calculator.html">SGPA Calculator</a></li>
+                    <li><a href="portal.html">Marks Portal</a></li>
                     <li><a href="#features">Features</a></li>
-                    <li><a href="#calculator">SGPA Calculator</a></li>
-                    <li><a href="#grading">Grade Scale</a></li>
                     <li><a href="#workflow">Workflow</a></li>
                     <li><a href="#faq">FAQ</a></li>
                     <!-- Mobile View Action Item -->
                     <li class="mobile-nav-action">
-                        <button type="button" class="btn-primary w-full" id="mobile-portal-btn">
+                        <a href="portal.html" class="btn-primary w-full">
                             <span>Open Marks Portal</span>
-                        </button>
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -71,8 +67,8 @@
                     <span class="theme-icon icon-moon" aria-hidden="true">🌙</span>
                 </button>
 
-                <a href="#showcase" class="btn-secondary nav-btn-hide-sm">View Demo</a>
-                <button type="button" class="btn-primary" id="open-portal-btn">Portal Access</button>
+                <a href="dashboard.html" class="btn-secondary nav-btn-hide-sm">View Demo</a>
+                <a href="portal.html" class="btn-primary">Portal Access</a>
 
                 <!-- Responsive Mobile Hamburger Toggle -->
                 <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="nav-links">
@@ -86,7 +82,7 @@
         <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Rich Academic Ambiance -->
     <section class="hero" id="home">
         <div class="hero-glow-1"></div>
         <div class="hero-glow-2"></div>
@@ -106,55 +102,56 @@
                 <span class="chip-text">94.5% Attendance</span>
             </div>
             <div class="hero-float-chip chip-4">
-                <span class="chip-icon">🏆</span>
+                <span class="chip-icon">🏅</span>
                 <span class="chip-text">O Grade Distinction</span>
             </div>
         </div>
-        
+
         <div class="hero-content">
             <div class="badge-wrapper">
                 <span class="eyebrow-badge">
-                    <span>✨</span>
-                    <span>AI-Powered Continuous Assessment & Evaluation</span>
+                    <span class="pulse-indicator"></span>
+                    Karunya Institute of Technology and Sciences
                 </span>
             </div>
 
             <h2>
-                AI Student Performance <br>
-                <span class="highlight-gradient">Analytics Dashboard</span>
+                AI Student Performance<br>
+                <span class="highlight-gradient">Analytics Platform</span>
             </h2>
 
-            <div class="tagline">Track • Analyze • Improve</div>
+            <div class="tagline">Track &bull; Analyze &bull; Improve</div>
 
             <p class="lead-text">
-                A purpose-built, intuitive platform for faculty and students at Karunya Institute of Technology and Sciences. 
-                Effortlessly input continuous assessments, automate university 10-point grade calculation, 
-                and uncover actionable performance insights.
+                A purpose-built, intuitive platform for faculty and students at Karunya Institute of Technology and Sciences. Effortlessly input continuous assessments, automate university 10&ndash;point grade calculation, and uncover actionable performance insights across dedicated workspaces.
             </p>
 
             <div class="hero-actions">
-                <a href="#showcase" class="btn-hero-primary">
-                    <span>Explore Dashboard Preview</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <a href="dashboard.html" class="btn-hero-primary">
+                    <span>🚀 Launch Dashboard Preview</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#grading" class="btn-hero-secondary">
-                    <span>View 10-Point Scale</span>
+                <a href="portal.html" class="btn-hero-secondary">
+                    <span>🔐 Continuous Assessment Portal</span>
+                </a>
+                <a href="calculator.html" class="btn-hero-secondary">
+                    <span>🧮 SGPA Calculator</span>
                 </a>
             </div>
 
             <!-- Key Metrics Strip -->
             <div class="stats-strip">
                 <div class="stat-item">
-                    <div class="stat-num">10.0 <span>Scale</span></div>
+                    <div class="stat-num"><span class="counter" data-target="10.0" data-decimals="1">10.0</span> <span>Scale</span></div>
                     <div class="stat-label">UGC / AICTE Compliant</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">100% <span>Auto</span></div>
-                    <div class="stat-label">SGPA & CGPA Calculation</div>
+                    <div class="stat-num"><span class="counter" data-target="100" data-suffix="%">100%</span> <span>Auto</span></div>
+                    <div class="stat-label">SGPA &amp; CGPA Calculation</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-num">3-Tier <span>CIA</span></div>
-                    <div class="stat-label">Internals, Quizzes & Model</div>
+                    <div class="stat-label">Internals, Quizzes &amp; Model</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-num"><span class="counter" data-target="99.9" data-decimals="1" data-suffix="%">99.9%</span> <span>Audit</span></div>
@@ -164,181 +161,75 @@
         </div>
     </section>
 
-    <!-- Live Interactive Showcase Preview (Human-Crafted Realistic UI Mockup) -->
-    <section class="showcase-wrapper" id="showcase">
-        <div class="dashboard-mockup">
-            <div class="mockup-header">
-                <div class="window-controls">
-                    <span class="window-dot dot-red"></span>
-                    <span class="window-dot dot-amber"></span>
-                    <span class="window-dot dot-green"></span>
+    <!-- Integrated Academic Workspaces Showcase Section -->
+    <section class="module-preview-section" id="workspaces">
+        <div class="section-header reveal-on-scroll">
+            <span class="section-tag">Dedicated Workspaces</span>
+            <h2>Integrated Academic Modules</h2>
+            <p class="subtitle">
+                Purpose-built academic intelligence separated into dedicated high-performance workspaces for students, faculty, and administrators.
+            </p>
+        </div>
+
+        <div class="module-preview-grid">
+            <!-- Workspace 1: Dashboard -->
+            <div class="module-card reveal-on-scroll">
+                <div>
+                    <div class="module-card-icon">📊</div>
+                    <h3>Student Analytics Dashboard</h3>
+                    <p>
+                        Comprehensive transcript diagnostics, student GPA metrics, attendance audit, and interactive live grade simulations.
+                    </p>
+                    <ul class="module-card-features">
+                        <li><span class="check-icon">✓</span> Real-Time Grade &amp; SGPA Simulator</li>
+                        <li><span class="check-icon">✓</span> Interactive Subject Mini-Cards &amp; Fill Progress</li>
+                        <li><span class="check-icon">✓</span> Automated Academic Advisor Insights</li>
+                        <li><span class="check-icon">✓</span> Cohort Ranking (#14) &amp; Exam Eligibility</li>
+                    </ul>
                 </div>
-                <div class="mockup-title">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                    Student Academic Transcript View • Semester V (Odd 2026-27)
-                </div>
-                <span class="status-pill">Live Simulated Record</span>
+                <a href="dashboard.html" class="btn-primary w-full" style="justify-content: center;">
+                    <span>Open Dashboard Preview &rarr;</span>
+                </a>
             </div>
 
-            <div class="mockup-body">
-                <!-- Student Identity Strip -->
-                <div class="student-bar">
-                    <div class="student-identity">
-                        <div class="student-avatar">KR</div>
-                        <div class="student-details">
-                            <h4>Kavitha R.</h4>
-                            <p>Register No: <strong>URK22CS1042</strong> • B.Tech Computer Science & Engineering</p>
-                        </div>
-                    </div>
-                    <div class="student-kpis">
-                        <div class="kpi-badge cgpa">
-                            <span class="kpi-val" data-target="8.92" data-decimals="2">0.00</span>
-                            <span>Current CGPA</span>
-                        </div>
-                        <div class="kpi-badge standing">
-                            <span class="kpi-val">Distinction</span>
-                            <span>Academic Standing</span>
-                        </div>
-                        <div class="kpi-badge attendance">
-                            <span class="kpi-val" data-target="94.5" data-suffix="%" data-decimals="1">0.0%</span>
-                            <span>Attendance</span>
-                        </div>
-                    </div>
+            <!-- Workspace 2: Marks Portal -->
+            <div class="module-card reveal-on-scroll">
+                <div>
+                    <div class="module-card-icon">📝</div>
+                    <h3>Continuous Assessment Portal</h3>
+                    <p>
+                        Faculty evaluation suite for recording continuous internal assessment marks, quizzes, and model examination scores.
+                    </p>
+                    <ul class="module-card-features">
+                        <li><span class="check-icon">✓</span> 3-Tier Continuous Internal Assessment (CIA)</li>
+                        <li><span class="check-icon">✓</span> Dynamic Total Score &amp; Grade Badge Preview</li>
+                        <li><span class="check-icon">✓</span> Student Assessment Audit Trail Table</li>
+                        <li><span class="check-icon">✓</span> Instant CSV Grade Sheet Export</li>
+                    </ul>
                 </div>
+                <a href="portal.html" class="btn-primary w-full" style="justify-content: center;">
+                    <span>Launch Marks Portal &rarr;</span>
+                </a>
+            </div>
 
-                <!-- Interactive Subject Selection Hint -->
-                <div class="subject-grid-hint">
-                    <span class="hint-sparkle">✨</span>
-                    <span>Click any course card below to inspect AI performance diagnostics and tailored suggestions</span>
+            <!-- Workspace 3: SGPA Calculator -->
+            <div class="module-card reveal-on-scroll">
+                <div>
+                    <div class="module-card-icon">🧮</div>
+                    <h3>CBCS SGPA Calculator</h3>
+                    <p>
+                        Choice Based Credit System (CBCS) calculation engine with custom course addition and official 10-point scale inspector.
+                    </p>
+                    <ul class="module-card-features">
+                        <li><span class="check-icon">✓</span> Reactive Course Rows &amp; Credit Weighting</li>
+                        <li><span class="check-icon">✓</span> First-Year Engineering Semester 1 Preset</li>
+                        <li><span class="check-icon">✓</span> Interactive UGC 10-Point Score Inspector</li>
+                        <li><span class="check-icon">✓</span> Percentage Equivalence &amp; Arrear Counter</li>
+                    </ul>
                 </div>
-
-                <!-- Subject Breakdown Mini Cards with Interactive Hover Tilt & Animated Fill -->
-                <div class="subject-grid">
-                    <!-- Subject 1 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Machine Learning">
-                        <div class="subject-meta">
-                            <h5>Machine Learning & AI</h5>
-                            <span class="grade-pill grade-o">O Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>93 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-emerald" data-width="93"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 2 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Database Management">
-                        <div class="subject-meta">
-                            <h5>Database Management</h5>
-                            <span class="grade-pill grade-aplus">A+ Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>86 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-blue" data-width="86"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 3 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Computer Networks">
-                        <div class="subject-meta">
-                            <h5>Computer Networks</h5>
-                            <span class="grade-pill grade-aplus">A+ Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>82 / 100</strong></span>
-                            <span>Credits: <strong>3.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-blue" data-width="82"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 4 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Design and Analysis of Algorithms">
-                        <div class="subject-meta">
-                            <h5>Design & Analysis of Algorithms</h5>
-                            <span class="grade-pill grade-a">A Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>76 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-purple" data-width="76"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI Academic Insight Callout -->
-                <div class="mockup-insight-banner">
-                    <span class="insight-icon">💡</span>
-                    <div class="insight-text">
-                        <strong>Academic Performance Insight:</strong> Student demonstrates exceptional conceptual clarity in Data Science & Machine Learning (Top 5% of cohort). Recommendation: Eligible for Honors track elective specialization.
-                    </div>
-                </div>
-
-                <!-- Live Interactive SGPA & Grade Point Simulator (Hands-On Microproject Feature) -->
-                <div class="interactive-simulator-card">
-                    <div class="sim-header">
-                        <div class="sim-title-group">
-                            <span class="sim-badge">
-                                <span class="pulse-dot"></span>
-                                Live Interactive Demo
-                            </span>
-                            <h4>Real-Time Grade & SGPA Simulator</h4>
-                        </div>
-                        <span class="sim-sub">Slide or select marks to test dynamic 10-point scale conversion</span>
-                    </div>
-
-                    <div class="sim-body">
-                        <div class="sim-input-zone">
-                            <div class="sim-slider-header">
-                                <label for="simMarksInput" class="sim-label">Continuous Assessment / Total Score:</label>
-                                <div class="sim-score-badge">
-                                    <span id="simScoreValue">88</span> <span class="score-max">/ 100</span>
-                                </div>
-                            </div>
-                            <input type="range" id="simMarksInput" class="sim-range-slider" min="0" max="100" value="88" aria-label="Marks Slider">
-                            
-                            <!-- Quick Score Presets -->
-                            <div class="sim-presets">
-                                <span class="presets-label">Try Scores:</span>
-                                <div class="preset-buttons">
-                                    <button type="button" class="preset-chip" data-score="95">95 (O)</button>
-                                    <button type="button" class="preset-chip active" data-score="88">88 (A+)</button>
-                                    <button type="button" class="preset-chip" data-score="78">78 (A)</button>
-                                    <button type="button" class="preset-chip" data-score="66">66 (B+)</button>
-                                    <button type="button" class="preset-chip" data-score="55">55 (B)</button>
-                                    <button type="button" class="preset-chip" data-score="42">42 (RA)</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Reactive Result Metrics -->
-                        <div class="sim-results-grid">
-                            <div class="sim-result-box grade-result">
-                                <span class="result-label">Letter Grade</span>
-                                <div class="sim-grade-pill grade-aplus" id="simGradePill">A+</div>
-                            </div>
-                            <div class="sim-result-box">
-                                <span class="result-label">Grade Point</span>
-                                <div class="sim-point-value" id="simGradePoint">9.0</div>
-                                <span class="result-scale">out of 10.0</span>
-                            </div>
-                            <div class="sim-result-box status-result">
-                                <span class="result-label">Evaluation Standing</span>
-                                <div class="sim-status-pill" id="simStatusPill">Passed with Honors</div>
-                                <div class="sim-remark" id="simRemark">Outstanding academic competence</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a href="calculator.html" class="btn-primary w-full" style="justify-content: center;">
+                    <span>Open SGPA Calculator &rarr;</span>
+                </a>
             </div>
         </div>
     </section>
@@ -349,528 +240,335 @@
             <span class="section-tag">Core Capabilities</span>
             <h2>Our Key Features</h2>
             <p class="subtitle">
-                Engineered to eliminate manual grading friction and provide students and faculty with crystal-clear academic clarity.
+                Engineered specifically to solve the manual overhead of academic assessment, offering speed, accuracy, and institutional compliance.
             </p>
         </div>
 
-        <div class="cards">
-            <!-- Feature 1: Marks Entry -->
-            <div class="card reveal-on-scroll">
-                <div class="card-icon-box icon-blue">
-                    ✏️
-                </div>
-                <h3>Modular Marks Entry</h3>
-                <p>
-                    Faculty can seamlessly record student marks across all assessment formats. 
-                    Built specifically around Karunya's continuous assessment structure.
-                </p>
-                <ul class="card-list">
-                    <li>Enter marks by course code & subject</li>
-                    <li>Continuous Internal Assessment (CIA-1 & CIA-2)</li>
-                    <li>Assignment, lab practical & end-sem inputs</li>
-                    <li>Instant edit and quick draft saving</li>
-                </ul>
-            </div>
-
-            <!-- Feature 2: Grade Calculation -->
+        <div class="feature-grid">
+            <!-- Feature 1 -->
             <div class="card reveal-on-scroll">
                 <div class="card-icon-box icon-emerald">
-                    🧮
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <h3>Automated Grade Calculation</h3>
+                <h3>Continuous Assessment</h3>
                 <p>
-                    No more manual calculation spreadsheets. The system computes SGPA, CGPA, 
-                    and letter grades based on credit weightage and standard university thresholds.
+                    Streamlined recording of internal tests (CIA-1, CIA-2), periodic quizzes, and model exams with instant weighted summation.
                 </p>
-                <ul class="card-list">
-                    <li>Instant 10-point scale conversion</li>
-                    <li>Automated SGPA & cumulative CGPA</li>
-                    <li>Official letter grades (O, A+, A, B+, B, C, F)</li>
-                    <li>Arrear detection & credit validation</li>
-                </ul>
+                <div class="card-footer-tag">3-Tier Internal Tracking</div>
             </div>
 
-            <!-- Feature 3: Performance Overview -->
+            <!-- Feature 2 -->
+            <div class="card reveal-on-scroll">
+                <div class="card-icon-box icon-blue">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 12l-4-4-4 4M12 16V8"/></svg>
+                </div>
+                <h3>AI Standing &amp; Trajectory</h3>
+                <p>
+                    Predictive analytics detect potential backlogs before semester exams and generate actionable guidance for faculty advisors.
+                </p>
+                <div class="card-footer-tag">Predictive Analytics</div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="card reveal-on-scroll">
+                <div class="card-icon-box icon-purple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Regulation Compliance</h3>
+                <p>
+                    Strictly aligned with Karunya CBCS 10-point scale regulations, UGC norms, and NAAC outcome-based education (OBE) frameworks.
+                </p>
+                <div class="card-footer-tag">UGC / AICTE Compliant</div>
+            </div>
+
+            <!-- Feature 4 -->
             <div class="card reveal-on-scroll">
                 <div class="card-icon-box icon-amber">
-                    📊
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
                 </div>
-                <h3>Performance Analytics</h3>
+                <h3>Fast Grading &amp; Export</h3>
                 <p>
-                    Holistic visual analytics for mentors and students. Identify strengths, 
-                    track historical progression, and flag areas requiring remedial coaching.
+                    Instant grade point calculations with export-ready transcript summaries formatted for administrative publication.
                 </p>
-                <ul class="card-list">
-                    <li>Subject-wise distribution breakdown</li>
-                    <li>Early alert for at-risk performance</li>
-                    <li>Class average & cohort benchmark</li>
-                    <li>One-click printable academic summaries</li>
-                </ul>
+                <div class="card-footer-tag">Sub-Second Processing</div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="card reveal-on-scroll">
+                <div class="card-icon-box icon-blue">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h3>Secure Role-Based Access</h3>
+                <p>
+                    Segregated dashboards for students, faculty mentors, and academic deans to maintain grading confidentiality.
+                </p>
+                <div class="card-footer-tag">Role Isolation</div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="card reveal-on-scroll">
+                <div class="card-icon-box icon-emerald">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <h3>Real-Time Sync &amp; Backups</h3>
+                <p>
+                    Automatic local state persistence and cloud backup safeguards ensure uninterrupted operation during faculty evaluation sessions.
+                </p>
+                <div class="card-footer-tag">Zero Data Loss</div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive SGPA & Grade Calculator Section -->
-    <section class="calculator-section" id="calculator">
-        <div class="calculator-container">
-            <div class="section-header">
-                <span class="section-tag">Interactive Student Tool</span>
-                <h2>Live SGPA & Grade Calculator</h2>
-                <p class="subtitle">
-                    Purpose-built for first-year engineering students. Add your semester courses, credit hours, and expected marks to compute your official semester SGPA and honors standing in real time.
-                </p>
-            </div>
-
-            <div class="calculator-card">
-                <div class="calc-top-bar">
-                    <div class="calc-info">
-                        <h4>Semester Grade Computation Engine</h4>
-                        <p>Karunya 10-Point CBCS Weightage Formula: <code>SGPA = &Sigma;(Credits &times; Grade Points) / &Sigma;Credits</code></p>
-                    </div>
-                    <div class="calc-presets">
-                        <button type="button" class="btn-calc-preset" id="calc-fill-sem1">
-                            <span>⚡ Load Sem 1 Preset</span>
-                        </button>
-                        <button type="button" class="btn-calc-preset btn-preset-clear" id="calc-reset">
-                            <span>🔄 Reset</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="calc-table-responsive">
-                    <table class="calc-table" id="calc-table">
-                        <thead>
-                            <tr>
-                                <th>Subject / Course Name</th>
-                                <th>Credits (Ci)</th>
-                                <th>Marks (0–100)</th>
-                                <th>Letter Grade</th>
-                                <th>Grade Points</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="calc-rows-container">
-                            <!-- Populated dynamically with reactive rows via script.js -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="calc-actions-strip">
-                    <button type="button" class="btn-add-subject" id="calc-add-row">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        <span>Add Course Subject</span>
-                    </button>
-                    <span class="calc-hint">💡 Type any marks (0-100) or adjust credits — SGPA calculates automatically</span>
-                </div>
-
-                <!-- Live Results Summary Dashboard Strip -->
-                <div class="calc-summary-panel">
-                    <div class="summary-metric-card metric-sgpa">
-                        <span class="metric-title">Computed SGPA</span>
-                        <div class="metric-value-wrap">
-                            <span class="metric-value" id="calc-result-sgpa">0.00</span>
-                            <span class="metric-scale">/ 10.0</span>
-                        </div>
-                        <span class="standing-pill" id="calc-result-standing">Awaiting Marks</span>
-                    </div>
-
-                    <div class="summary-metric-card">
-                        <span class="metric-title">Total Earned Credits</span>
-                        <span class="metric-value-sm" id="calc-result-credits">0</span>
-                        <span class="metric-subtext">Registered Credit Units</span>
-                    </div>
-
-                    <div class="summary-metric-card">
-                        <span class="metric-title">Equivalent Percentage</span>
-                        <span class="metric-value-sm" id="calc-result-percentage">0.0%</span>
-                        <span class="metric-subtext">Formula: (SGPA - 0.5) &times; 10</span>
-                    </div>
-
-                    <div class="summary-metric-card">
-                        <span class="metric-title">Academic Standing</span>
-                        <span class="metric-value-sm text-emerald" id="calc-result-arrears">All Clear</span>
-                        <span class="metric-subtext" id="calc-result-status-text">0 Re-Appears</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Karunya 10-Point Grade Reference Scale -->
-    <section class="grading-section" id="grading">
-        <div class="grading-container">
-            <div class="section-header reveal-on-scroll">
-                <span class="section-tag">University Regulations</span>
-                <h2>Karunya 10-Point Grading Scale</h2>
-                <p class="subtitle">
-                    Official evaluation benchmarks utilized by this platform for semester grade point calculations.
-                </p>
-            </div>
-
-            <div class="grading-table-card reveal-on-scroll">
-                <div class="table-header-title">
-                    <h4>UG & PG Academic Evaluation Matrix</h4>
-                    <span class="status-pill">Active Grading Standard</span>
-                </div>
-
-                <!-- Interactive Live Score Inspector -->
-                <div class="grade-inspector-bar">
-                    <div class="inspector-label">
-                        <span class="inspector-icon">🔍</span>
-                        <span>Interactive Grade Inspector:</span>
-                    </div>
-                    <div class="inspector-input-wrap">
-                        <input type="number" id="grade-score-input" min="0" max="100" placeholder="Enter score e.g. 85" aria-label="Enter score to inspect grade">
-                        <span class="inspector-addon">/ 100</span>
-                    </div>
-                    <div class="inspector-result-badge" id="grade-score-result">
-                        <span>Enter any score to highlight matching grade</span>
-                    </div>
-                </div>
-
-                <div class="grading-table-responsive">
-                    <table class="grading-table">
-                        <thead>
-                            <tr>
-                                <th>Marks Range</th>
-                                <th>Grade Point</th>
-                                <th>Letter Grade</th>
-                                <th>Qualitative Performance</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>90 – 100</strong></td>
-                                <td><strong>10.0</strong></td>
-                                <td><span class="grade-badge-sm grade-o">O</span></td>
-                                <td>Outstanding</td>
-                                <td><span class="standing-pill">Passed with Distinction</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>80 – 89</strong></td>
-                                <td><strong>9.0</strong></td>
-                                <td><span class="grade-badge-sm grade-aplus">A+</span></td>
-                                <td>Excellent</td>
-                                <td><span class="standing-pill">Passed with Honors</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>70 – 79</strong></td>
-                                <td><strong>8.0</strong></td>
-                                <td><span class="grade-badge-sm grade-a">A</span></td>
-                                <td>Very Good</td>
-                                <td><span class="standing-pill">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>60 – 69</strong></td>
-                                <td><strong>7.0</strong></td>
-                                <td><span class="grade-badge-sm grade-bplus">B+</span></td>
-                                <td>Good</td>
-                                <td><span class="standing-pill">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>50 – 59</strong></td>
-                                <td><strong>6.0</strong></td>
-                                <td><span class="grade-badge-sm grade-b">B</span></td>
-                                <td>Above Average</td>
-                                <td><span class="standing-pill">Passed</span></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Below 50</strong></td>
-                                <td><strong>0.0</strong></td>
-                                <td><span class="grade-badge-sm grade-ra">RA</span></td>
-                                <td>Re-Appear / Arrear</td>
-                                <td><span class="standing-pill standing-remedial">Remedial Required</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4-Step Academic Workflow -->
+    <!-- Academic Evaluation Workflow Section -->
     <section class="workflow-section" id="workflow">
-        <div class="section-header reveal-on-scroll">
-            <span class="section-tag">System Workflow</span>
-            <h2>How The Platform Works</h2>
-            <p class="subtitle">
-                From internal continuous evaluation to semester transcripts in four simple steps.
-            </p>
-        </div>
-
-        <div class="workflow-grid">
-            <div class="step-card reveal-on-scroll">
-                <div class="step-number">1</div>
-                <h4>Select Subject & Class</h4>
-                <p>Faculty picks the department, degree program, semester, and course catalog from the central directory.</p>
+        <div class="workflow-container">
+            <div class="section-header reveal-on-scroll">
+                <span class="section-tag">How It Works</span>
+                <h2>4-Step Academic Workflow</h2>
+                <p class="subtitle">
+                    How assessment data travels from faculty classrooms to verifiable institutional academic records.
+                </p>
             </div>
 
-            <div class="step-card reveal-on-scroll">
-                <div class="step-number">2</div>
-                <h4>Upload or Key-In Marks</h4>
-                <p>Input CIA-1, CIA-2, lab assignments, or upload batch marks directly through Excel spreadsheets.</p>
+            <div class="steps-grid">
+                <div class="step-card reveal-on-scroll">
+                    <div class="step-num">1</div>
+                    <h4>Assessment Input</h4>
+                    <p>Faculty enter scores for CIA tests, laboratory assignments, and quizzes via the dedicated portal.</p>
+                </div>
+
+                <div class="step-card reveal-on-scroll">
+                    <div class="step-num">2</div>
+                    <h4>AI Intelligence Engine</h4>
+                    <p>The system maps marks to course credits, computes percentile rankings, and spots students needing remediation.</p>
+                </div>
+
+                <div class="step-card reveal-on-scroll">
+                    <div class="step-num">3</div>
+                    <h4>SGPA Automation</h4>
+                    <p>Dynamic 10-point scale conversion yields authenticated SGPA values with zero rounding discrepancies.</p>
+                </div>
+
+                <div class="step-card reveal-on-scroll">
+                    <div class="step-num">4</div>
+                    <h4>University Export</h4>
+                    <p>Validated results are published directly to student dashboard transcripts and administrative grade sheets.</p>
+                </div>
             </div>
 
-            <div class="step-card reveal-on-scroll">
-                <div class="step-number">3</div>
-                <h4>Automated Audit & Calculation</h4>
-                <p>Algorithms verify credit weights, calculate SGPA/CGPA, and assign letter grades in milliseconds.</p>
-            </div>
-
-            <div class="step-card reveal-on-scroll">
-                <div class="step-number">4</div>
-                <h4>Publish & Review Insights</h4>
-                <p>Students access their verified grades while mentors inspect class trends and remedial recommendations.</p>
+            <!-- Institutional Callout Box -->
+            <div class="callout-box reveal-on-scroll">
+                <div class="callout-content">
+                    <div class="callout-icon">🎓</div>
+                    <div class="callout-text">
+                        <h3>Karunya Continuous Assessment Philosophy</h3>
+                        <p>
+                            &ldquo;Continuous evaluation cultivates consistent excellence. By equipping faculty with transparent diagnostics and students with real-time feedback, we empower each scholar to maximize their academic potential.&rdquo;
+                        </p>
+                        <div class="quote-author">Office of Academic Affairs &bull; KITS</div>
+                    </div>
+                </div>
+                <div class="callout-actions">
+                    <a href="dashboard.html" class="btn-callout">
+                        <span>Explore Dashboard Preview &rarr;</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Academic FAQ Accordion Section -->
+    <!-- Frequently Asked Questions Section -->
     <section class="faq-section" id="faq">
         <div class="faq-container">
             <div class="section-header reveal-on-scroll">
-                <span class="section-tag">Student &amp; Faculty Knowledgebase</span>
+                <span class="section-tag">Common Queries</span>
                 <h2>Frequently Asked Questions</h2>
                 <p class="subtitle">
-                    Clear answers to grading guidelines, credit distributions, and performance calculations at Karunya Institute.
+                    Clear answers regarding Choice Based Credit System (CBCS), grade calculation rules, and continuous evaluation policies.
                 </p>
             </div>
 
             <div class="faq-accordion" id="faq-accordion">
                 <!-- FAQ Item 1 -->
-                <div class="faq-item active reveal-on-scroll">
+                <div class="faq-item reveal-on-scroll active">
                     <button type="button" class="faq-question" aria-expanded="true">
-                        <span>How is the Semester Grade Point Average (SGPA) calculated?</span>
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        <span>How is SGPA calculated under the Choice Based Credit System (CBCS)?</span>
+                        <span class="faq-icon">&plus;</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            SGPA is computed using the Choice Based Credit System (CBCS) weighted average formula:
-                            <code>SGPA = &Sigma;(Course Credits &times; Grade Points Earned) / &Sigma;(Total Registered Credits)</code>.
-                            Each course letter grade corresponds to a university-defined grade point (e.g. <strong>O = 10.0, A+ = 9.0, A = 8.0, B+ = 7.0, B = 6.0, RA = 0.0</strong>).
-                        </p>
+                        <div class="faq-answer-inner">
+                            <p>
+                                SGPA is the weighted average of grade points obtained across all registered courses in a semester. It is computed as:
+                            </p>
+                            <p style="margin: 8px 0; font-family: monospace; font-weight: 700; color: var(--primary-600);">
+                                SGPA = &Sigma;(Credit Hours &times; Grade Points) / &Sigma;(Total Credits)
+                            </p>
+                            <p>
+                                Each course is assigned credits (usually 1 to 5), and the grade point corresponding to your letter grade (e.g., O = 10, A+ = 9, A = 8) is multiplied by the course credits.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 2 -->
                 <div class="faq-item reveal-on-scroll">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span>What constitutes Continuous Internal Assessment (CIA) at Karunya?</span>
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        <span>What are the passing criteria under Karunya Academic Regulations?</span>
+                        <span class="faq-icon">&plus;</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            CIA is a comprehensive evaluation structure comprising internal assessments:
-                            <strong>CIA-1 (25%)</strong>, <strong>CIA-2 (25%)</strong>, <strong>Quizzes / Assignments / Lab Assessments (20%)</strong>, and the <strong>End-Semester Examination (30%)</strong>. This ensures students are evaluated consistently across the semester.
-                        </p>
+                        <div class="faq-answer-inner">
+                            <p>
+                                To earn credits for a registered course, a student must secure at least <strong>50% marks in aggregate</strong> (B Grade, 6.0 Grade Points) combining continuous assessments and end-semester evaluations. Securing below 50% results in a <strong>RA (Re-Appear)</strong> standing requiring re-examination.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 3 -->
                 <div class="faq-item reveal-on-scroll">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span>What is the minimum criteria to qualify for First Class with Distinction?</span>
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        <span>What is the weightage distribution for Continuous Internal Assessments (CIA)?</span>
+                        <span class="faq-icon">&plus;</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            To graduate with <strong>First Class with Distinction</strong>, a student must secure a cumulative CGPA of <strong>8.50 or higher</strong>, clear all courses in the first attempt without any backlogs, and complete the degree program within the standard stipulated duration.
-                        </p>
+                        <div class="faq-answer-inner">
+                            <p>
+                                The standard CIA weightage model comprises:
+                            </p>
+                            <ul style="padding-left: 20px; margin-top: 6px;">
+                                <li><strong>CIA Test 1:</strong> 25 Marks</li>
+                                <li><strong>CIA Test 2:</strong> 25 Marks</li>
+                                <li><strong>Continuous Quizzes &amp; Assignments:</strong> 20 Marks</li>
+                                <li><strong>Model Exam / Practical:</strong> 30 Marks</li>
+                            </ul>
+                            <p style="margin-top: 6px;">
+                                This ensures consistent academic engagement throughout the semester rather than reliance solely on final examinations.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 4 -->
                 <div class="faq-item reveal-on-scroll">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span>What is the Re-Appear (RA) grade policy and remedial workflow?</span>
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        <span>How does the system calculate percentage from CGPA?</span>
+                        <span class="faq-icon">&plus;</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            A total score below 50 marks results in an <strong>RA (Re-Appear / Arrear)</strong> grade with 0.0 grade points. The student is flagged for remedial mentorship sessions and must re-appear during supplementary or subsequent semester examinations.
-                        </p>
+                        <div class="faq-answer-inner">
+                            <p>
+                                In accordance with AICTE and Karunya university standards, equivalent percentage is derived through the standard conversion formula:
+                            </p>
+                            <p style="margin: 8px 0; font-family: monospace; font-weight: 700; color: var(--primary-600);">
+                                Percentage (%) = (CGPA &minus; 0.5) &times; 10
+                            </p>
+                            <p>
+                                For example, an SGPA/CGPA of 9.24 yields: (9.24 &minus; 0.5) &times; 10 = 87.4%.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 <!-- FAQ Item 5 -->
                 <div class="faq-item reveal-on-scroll">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span>Can this dashboard convert SGPA into an equivalent percentage?</span>
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        <span>What minimum attendance percentage is required for examination eligibility?</span>
+                        <span class="faq-icon">&plus;</span>
                     </button>
                     <div class="faq-answer">
-                        <p>
-                            Yes. In compliance with university and UGC standards, the equivalent percentage is computed as <code>Percentage (%) = (SGPA - 0.5) &times; 10</code>. Our interactive calculator displays this instantly for placement and higher education readiness.
-                        </p>
+                        <div class="faq-answer-inner">
+                            <p>
+                                Karunya regulations require a minimum of <strong>75% overall attendance</strong> in each course. Students with attendance between 65% and 74% are eligible only under sanctioned medical condonation. The live dashboard actively flags attendance below threshold.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item reveal-on-scroll">
+                    <button type="button" class="faq-question" aria-expanded="false">
+                        <span>Is this project compatible across mobile devices and dark mode?</span>
+                        <span class="faq-icon">&plus;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            <p>
+                                Yes! This academic micro-project is engineered using fluid CSS Grid, Flexbox, and CSS Variables, allowing seamless performance across smartphones, tablets, and 4K displays. Dark mode preference is remembered automatically using browser local storage.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Institutional Callout Strip -->
-    <div class="callout-banner">
-        <div class="callout-box reveal-on-scroll">
-            <div class="callout-content">
-                <h3>Designed for Karunya Academic Excellence</h3>
-                <p>Built as a focused academic micro-project to demonstrate high-efficiency grading automation and actionable student analytics.</p>
-            </div>
-            <a href="#calculator" class="btn-hero-primary btn-callout">
-                <span>Try Live Calculator</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Polished Academic Footer -->
+    <!-- Footer -->
     <footer id="about">
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <h3>🎓 Karunya Analytics</h3>
-                    <p>
-                        AI-Enhanced Student Performance Analytics & Grading Dashboard. 
-                        A departmental micro-project developed for academic assessment and workflow optimization.
-                    </p>
-                    <p class="footer-address">
-                        Karunya Nagar, Coimbatore, Tamil Nadu 641114, India
-                    </p>
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <div class="brand">
+                    <div class="brand-icon-wrapper">🎓</div>
+                    <div class="brand-text">
+                        <h3>Karunya Analytics</h3>
+                        <span>Academic Excellence Platform</span>
+                    </div>
                 </div>
-
-                <div class="footer-col">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#showcase">Live Dashboard</a></li>
-                        <li><a href="#features">Key Features</a></li>
-                        <li><a href="#grading">Grading Matrix</a></li>
-                        <li><a href="#workflow">Workflow</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Modules</h4>
-                    <ul>
-                        <li><a href="#features">Marks Entry Portal</a></li>
-                        <li><a href="#features">Grade Calculator</a></li>
-                        <li><a href="#features">Performance Trends</a></li>
-                        <li><a href="#grading">Regulations & Scale</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Academic Info</h4>
-                    <ul>
-                        <li><a href="#">Department of AIML</a></li>
-                        <li><a href="#">Curriculum 2024</a></li>
-                        <li><a href="#">NAAC Accreditation</a></li>
-                        <li><a href="#about">Project Documentation</a></li>
-                    </ul>
+                <p>
+                    Engineered for continuous assessment transparency, student academic empowerment, and UGC-compliant 10-point GPA calculation.
+                </p>
+                <div class="accreditation-pill">
+                    <span class="star-icon">★</span>
+                    <span>NAAC A++ Accredited Institutional Standards</span>
                 </div>
             </div>
 
-            <div class="footer-bottom">
-                <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
-                <div class="footer-bottom-badge">
-                    <span class="pulse-dot"></span>
-                    <span>System v2.4 • Pure HTML5, CSS3 &amp; JS</span>
+            <div class="footer-col">
+                <h4>Platform Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home Overview</a></li>
+                    <li><a href="dashboard.html">Live Analytics Dashboard</a></li>
+                    <li><a href="calculator.html">SGPA &amp; CGPA Calculator</a></li>
+                    <li><a href="portal.html">Continuous Evaluation Portal</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Academic Tools</h4>
+                <ul class="footer-links">
+                    <li><a href="calculator.html#grading">10-Point Grade Scale</a></li>
+                    <li><a href="#workflow">4-Step Evaluation Workflow</a></li>
+                    <li><a href="#features">Regulation Features</a></li>
+                    <li><a href="#faq">Academic FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Institutional Hub</h4>
+                <p class="institution-address">
+                    Karunya Institute of Technology and Sciences<br>
+                    Karunya Nagar, Coimbatore &ndash; 641 114<br>
+                    Tamil Nadu, India.
+                </p>
+                <div class="tech-badge">
+                    <span>CBCS Regulation 2024</span>
                 </div>
             </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
         </div>
     </footer>
 
-    <!-- Floating Back-to-Top Button with Circular Scroll Progress Ring -->
+    <!-- Back to Top Button with Circular Scroll Progress -->
     <button class="back-to-top" id="backToTopBtn" aria-label="Back to top" title="Scroll to top">
         <svg class="progress-ring" width="46" height="46" viewBox="0 0 46 46">
-            <circle class="progress-ring-bg" stroke="rgba(37, 99, 235, 0.15)" stroke-width="3.5" fill="transparent" r="20" cx="23" cy="23"/>
-            <circle class="progress-ring-circle" id="scrollProgressCircle" stroke="#2563eb" stroke-width="3.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" fill="transparent" r="20" cx="23" cy="23"/>
+            <circle class="progress-ring-bg" stroke="rgba(124, 58, 237, 0.15)" stroke-width="3.5" fill="transparent" r="20" cx="23" cy="23"/>
+            <circle class="progress-ring-circle" id="scrollProgressCircle" stroke="#8b5cf6" stroke-width="3.5" stroke-dasharray="125.66" stroke-dashoffset="125.66" stroke-linecap="round" fill="transparent" r="20" cx="23" cy="23"/>
         </svg>
-        <span class="back-to-top-arrow">↑</span>
+        <span class="back-to-top-arrow">&uarr;</span>
     </button>
-
-    <!-- Interactive Simulated Marks Entry Modal (Portal Access) -->
-    <div class="modal-backdrop" id="portal-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-        <div class="modal-dialog">
-            <div class="modal-header">
-                <div class="modal-title-wrap">
-                    <div class="modal-icon">📝</div>
-                    <div>
-                        <h3 id="modal-title">CIA Continuous Evaluation Entry Portal</h3>
-                        <p>Simulate faculty recording marks for student continuous assessment</p>
-                    </div>
-                </div>
-                <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close Portal Modal">&times;</button>
-            </div>
-
-            <form class="modal-body" id="modal-marks-form">
-                <div class="form-row form-row-2">
-                    <div class="form-group">
-                        <label for="student-reg">Register Number</label>
-                        <input type="text" id="student-reg" value="URK22CS1042" placeholder="e.g. URK24CS1001" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="student-name">Student Full Name</label>
-                        <input type="text" id="student-name" value="Kavitha R." placeholder="Student Name" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="course-select">Select Academic Course</label>
-                        <select id="course-select" required>
-                            <option value="Machine Learning & AI" data-credits="4">24CS201 - Machine Learning & AI (4 Credits)</option>
-                            <option value="Database Management" data-credits="4">24CS202 - Database Management (4 Credits)</option>
-                            <option value="Computer Networks" data-credits="3">24CS203 - Computer Networks (3 Credits)</option>
-                            <option value="Design & Analysis of Algorithms" data-credits="4">24CS204 - Design & Analysis of Algorithms (4 Credits)</option>
-                            <option value="Discrete Mathematics" data-credits="4">24MA201 - Discrete Mathematics (4 Credits)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-marks-grid">
-                    <div class="form-group">
-                        <label for="mark-cia1">CIA-1 (Max 25)</label>
-                        <input type="number" id="mark-cia1" min="0" max="25" value="23" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mark-cia2">CIA-2 (Max 25)</label>
-                        <input type="number" id="mark-cia2" min="0" max="25" value="22" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mark-quiz">Quizzes (Max 20)</label>
-                        <input type="number" id="mark-quiz" min="0" max="20" value="19" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mark-endsem">End-Sem / Model (Max 30)</label>
-                        <input type="number" id="mark-endsem" min="0" max="30" value="28" required>
-                    </div>
-                </div>
-
-                <!-- Real-time Preview Pill Inside Modal -->
-                <div class="modal-preview-bar">
-                    <div class="preview-item">
-                        <span>Total Score:</span>
-                        <strong id="modal-score-preview">92 / 100</strong>
-                    </div>
-                    <div class="preview-item">
-                        <span>Predicted Grade:</span>
-                        <span class="grade-badge-sm grade-o" id="modal-grade-preview">O (10.0)</span>
-                    </div>
-                    <div class="preview-item">
-                        <span>Result Status:</span>
-                        <span class="standing-pill" id="modal-standing-preview">Passed with Distinction</span>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn-secondary" id="modal-cancel-btn">Cancel</button>
-                    <button type="submit" class="btn-primary">
-                        <span>✓ Save &amp; Record Marks</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <!-- Global Toast Notifications Container -->
     <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
