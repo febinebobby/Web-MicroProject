@@ -127,11 +127,10 @@ function initThemeToggle() {
     const toggleBtn = document.getElementById('theme-toggle');
     const root = document.documentElement;
 
-    // Retrieve saved theme or infer from system color preference
+    // Retrieve saved theme preference; default strictly to 'light' mode
     const savedTheme = localStorage.getItem('karunya_theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    if (savedTheme === 'dark') {
         root.setAttribute('data-theme', 'dark');
     } else {
         root.setAttribute('data-theme', 'light');
