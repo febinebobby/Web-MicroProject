@@ -1037,7 +1037,7 @@ function initCelebrationConfetti() {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    const colors = ['#2563eb', '#3b82f6', '#10b981', '#f59e0b', '#7c3aed', '#ec4899', '#fcd34d'];
+    const colors = ['#1e4d96', '#2563b8', '#10b981', '#c9a84c', '#0f2d5e', '#4a80c8', '#fcd34d'];
 
     function createParticle() {
         return {
