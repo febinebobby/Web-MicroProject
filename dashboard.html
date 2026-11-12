@@ -32,7 +32,7 @@
     <!-- Sticky Main Navigation Header -->
     <header class="header-nav">
         <div class="nav-container">
-            <a href="index.html" class="brand" aria-label="Home">
+            <a href="index.html#home" class="brand" aria-label="Home">
                 <div class="brand-icon-wrapper">
                     🎓
                 </div>
@@ -44,7 +44,7 @@
 
             <nav class="navbar" id="navbar" aria-label="Main Navigation">
                 <ul class="nav-links" id="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#home">Home</a></li>
                     <li><a href="dashboard.html" class="active">Dashboard</a></li>
                     <li><a href="calculator.html">SGPA Calculator</a></li>
                     <li><a href="portal.html">Marks Portal</a></li>
@@ -288,59 +288,75 @@
 
     <!-- Footer -->
     <footer id="about">
-        <div class="footer-container">
-            <div class="footer-col brand-col">
-                <div class="brand">
-                    <div class="brand-icon-wrapper">🎓</div>
-                    <div class="brand-text">
-                        <h3>Karunya Analytics</h3>
-                        <span>Academic Excellence Platform</span>
+        <div class="footer-inner">
+            <div class="footer-top">
+
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <div class="brand-icon-wrapper">🎓</div>
+                        <div class="brand-text">
+                            <h3>Karunya Analytics</h3>
+                            <span>Academic Excellence Platform</span>
+                        </div>
+                    </div>
+                    <p>Engineered for continuous assessment transparency, student academic empowerment, and UGC-compliant 10-point GPA calculation at Karunya Institute.</p>
+                    <div class="footer-accreditation">
+                        <span class="footer-acc-icon">★</span>
+                        <span>NAAC A++ Accredited</span>
+                    </div>
+                    <div class="footer-socials">
+                        <span class="footer-social-pill">🌐 kits.ac.in</span>
+                        <span class="footer-social-pill">📍 Coimbatore</span>
                     </div>
                 </div>
-                <p>
-                    Engineered for continuous assessment transparency, student academic empowerment, and UGC-compliant 10-point GPA calculation.
-                </p>
-                <div class="accreditation-pill">
-                    <span class="star-icon">★</span>
-                    <span>NAAC A++ Accredited Institutional Standards</span>
+
+                <!-- Navigation Column -->
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home"><span class="footer-link-arrow">›</span> Home Overview</a></li>
+                        <li><a href="dashboard.html"><span class="footer-link-arrow">›</span> Analytics Dashboard</a></li>
+                        <li><a href="calculator.html"><span class="footer-link-arrow">›</span> SGPA Calculator</a></li>
+                        <li><a href="portal.html"><span class="footer-link-arrow">›</span> Marks Portal</a></li>
+                    </ul>
                 </div>
-            </div>
 
-            <div class="footer-col">
-                <h4>Platform Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home Overview</a></li>
-                    <li><a href="dashboard.html">Live Analytics Dashboard</a></li>
-                    <li><a href="calculator.html">SGPA &amp; CGPA Calculator</a></li>
-                    <li><a href="portal.html">Continuous Evaluation Portal</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Academic Tools</h4>
-                <ul class="footer-links">
-                    <li><a href="calculator.html#grading">10-Point Grade Scale</a></li>
-                    <li><a href="index.html#workflow">4-Step Evaluation Workflow</a></li>
-                    <li><a href="index.html#features">Regulation Features</a></li>
-                    <li><a href="index.html#faq">Academic FAQs</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Institutional Hub</h4>
-                <p class="institution-address">
-                    Karunya Institute of Technology and Sciences<br>
-                    Karunya Nagar, Coimbatore &ndash; 641 114<br>
-                    Tamil Nadu, India.
-                </p>
-                <div class="tech-badge">
-                    <span>CBCS Regulation 2024</span>
+                <!-- Academic Tools Column -->
+                <div class="footer-col">
+                    <h4>Academic Tools</h4>
+                    <ul class="footer-links">
+                        <li><a href="calculator.html#grading"><span class="footer-link-arrow">›</span> 10-Point Grade Scale</a></li>
+                        <li><a href="index.html#workflow"><span class="footer-link-arrow">›</span> Evaluation Workflow</a></li>
+                        <li><a href="index.html#features"><span class="footer-link-arrow">›</span> Core Features</a></li>
+                        <li><a href="index.html#faq"><span class="footer-link-arrow">›</span> Academic FAQs</a></li>
+                    </ul>
                 </div>
-            </div>
-        </div>
 
+                <!-- Contact / Info Column -->
+                <div class="footer-col">
+                    <h4>Institution</h4>
+                    <ul class="footer-links footer-info-list">
+                        <li><span class="footer-info-icon">🏛️</span> Karunya Institute of Technology &amp; Sciences</li>
+                        <li><span class="footer-info-icon">📍</span> Karunya Nagar, Coimbatore – 641 114, Tamil Nadu</li>
+                        <li><span class="footer-info-icon">🏷️</span> Deemed-to-be University</li>
+                        <li><span class="footer-info-icon">📋</span> CBCS Regulation 2024</li>
+                    </ul>
+                </div>
+
+            </div><!-- /.footer-top -->
+        </div><!-- /.footer-inner -->
+
+        <!-- Footer Bottom Bar -->
         <div class="footer-bottom">
-            <p>&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved. Academic Micro-Project.</p>
+            <div class="footer-bottom-inner">
+                <p class="footer-copy">&copy; 2026 Karunya Institute of Technology and Sciences. All rights reserved.</p>
+                <div class="footer-bottom-badges">
+                    <span class="footer-bottom-badge"><span class="pulse-dot"></span> System Online</span>
+                    <span class="footer-bottom-badge">🎓 Academic Micro-Project</span>
+                    <span class="footer-bottom-badge">⚡ Pure HTML · CSS · JS</span>
+                </div>
+            </div>
         </div>
     </footer>
 
