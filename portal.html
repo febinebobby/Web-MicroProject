@@ -210,7 +210,7 @@
                         <span class="status-pill">Audit Trail</span>
                     </div>
 
-                    <div style="overflow-x: auto;">
+                    <div class="portal-table-wrap">
                         <table class="portal-recent-table">
                             <thead>
                                 <tr>
@@ -221,7 +221,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="portal-recent-tbody">
                                 <tr>
                                     <td><strong>URK22CS1042</strong></td>
                                     <td>Kavitha R.</td>
@@ -254,11 +254,11 @@
                         </table>
                     </div>
 
-                    <div style="margin-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                        <button type="button" class="btn-secondary" onclick="showToast('✓ Grade Sheet exported successfully (CSV)!', 'success'); if(window.fireConfetti) window.fireConfetti();">
+                    <div class="portal-card-actions">
+                        <button type="button" class="btn-secondary" id="portal-export-csv-btn">
                             📥 Export Grade Sheet (CSV)
                         </button>
-                        <a href="dashboard.html" class="btn-hero-primary" style="padding: 9px 18px; font-size: 0.85rem;">
+                        <a href="dashboard.html" class="btn-primary">
                             View Analytics Dashboard &rarr;
                         </a>
                     </div>

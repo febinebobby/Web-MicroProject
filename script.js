@@ -788,6 +788,31 @@ function initPortalModal() {
     const scorePreview = document.getElementById('modal-score-preview');
     const gradePreview = document.getElementById('modal-grade-preview');
     const standingPreview = document.getElementById('modal-standing-preview');
+    const recentTbody = document.getElementById('portal-recent-tbody');
+    const exportCsvBtn = document.getElementById('portal-export-csv-btn');
+
+    function getPortalScores() {
+        const c1 = Math.min(Math.max(parseFloat(cia1Input?.value) || 0, 0), 25);
+        const c2 = Math.min(Math.max(parseFloat(cia2Input?.value) || 0, 0), 25);
+        const qz = Math.min(Math.max(parseFloat(quizInput?.value) || 0, 0), 20);
+        const es = Math.min(Math.max(parseFloat(endsemInput?.value) || 0, 0), 30);
+        const total = Math.round(c1 + c2 + qz + es);
+        return { total, grade: getKarunyaGrade(total) };
+    }
+
+    function updateModalPreview() {
+        const { total, grade } = getPortalScores();
+
+        if (scorePreview) scorePreview.textContent = `${total} / 100`;
+        if (gradePreview) {
+            gradePreview.textContent = `${grade.letter} (${grade.point.toFixed(1)})`;
+            gradePreview.className = `grade-badge-sm ${grade.colorClass}`;
+        }
+        if (standingPreview) {
+            standingPreview.textContent = grade.status;
+            standingPreview.className = `standing-pill ${total < 50 ? 'standing-remedial' : ''}`;
+        }
+    }
 
     // Always wire inputs for live calculation (whether modal or standalone portal page)
     [cia1Input, cia2Input, quizInput, endsemInput].filter(Boolean).forEach(input => {
@@ -798,14 +823,83 @@ function initPortalModal() {
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const regNo = document.getElementById('student-reg')?.value || 'URK24CS1042';
+            const regNo = (document.getElementById('student-reg')?.value || 'URK24CS1042').trim();
+            const studentName = (document.getElementById('student-name')?.value || 'Student').trim();
             const course = document.getElementById('course-select')?.value || 'Course';
+            const { total, grade } = getPortalScores();
+
+            // If on dedicated portal page, prepend the new record to the audit table
+            if (recentTbody) {
+                const tr = document.createElement('tr');
+                const shortStatus = total >= 90 ? 'Distinction'
+                    : total >= 80 ? 'Honors'
+                    : total >= 70 ? 'Very Good'
+                    : total >= 60 ? 'Good'
+                    : total >= 50 ? 'Passed'
+                    : 'Re-Appear';
+
+                const tdReg = document.createElement('td');
+                const strongReg = document.createElement('strong');
+                strongReg.textContent = regNo;
+                tdReg.appendChild(strongReg);
+
+                const tdName = document.createElement('td');
+                tdName.textContent = studentName;
+
+                const tdScore = document.createElement('td');
+                tdScore.textContent = `${total} / 100`;
+
+                const tdGrade = document.createElement('td');
+                const gradeBadge = document.createElement('span');
+                gradeBadge.className = `grade-badge-sm ${grade.colorClass}`;
+                gradeBadge.textContent = grade.letter;
+                tdGrade.appendChild(gradeBadge);
+
+                const tdStatus = document.createElement('td');
+                const statusPill = document.createElement('span');
+                statusPill.className = `standing-pill ${total < 50 ? 'standing-remedial' : ''}`;
+                statusPill.textContent = shortStatus;
+                tdStatus.appendChild(statusPill);
+
+                tr.append(tdReg, tdName, tdScore, tdGrade, tdStatus);
+                recentTbody.prepend(tr);
+            }
 
             if (modal && modal.classList.contains('is-open')) {
                 closeModal();
             }
             showToast(`✓ Continuous assessment marks recorded for ${regNo} (${course})!`, 'success');
 
+            if (total >= 90 && window.fireConfetti) {
+                window.fireConfetti();
+            }
+        });
+    }
+
+    // Real CSV Export for the Portal Audit Table
+    if (exportCsvBtn && recentTbody) {
+        exportCsvBtn.addEventListener('click', () => {
+            const rows = [['Register No', 'Student Name', 'Score', 'Grade', 'Standing']];
+            recentTbody.querySelectorAll('tr').forEach(tr => {
+                const cells = Array.from(tr.querySelectorAll('td')).map(td => {
+                    const text = td.textContent.trim().replace(/\s+/g, ' ');
+                    return `"${text.replace(/"/g, '""')}"`;
+                });
+                if (cells.length) rows.push(cells);
+            });
+
+            const csvContent = rows.map(r => r.join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'karunya_grade_sheet.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast('✓ Grade Sheet exported as karunya_grade_sheet.csv!', 'success');
             if (window.fireConfetti) {
                 window.fireConfetti();
             }
@@ -827,26 +921,6 @@ function initPortalModal() {
         document.body.style.overflow = '';
     }
 
-    function updateModalPreview() {
-        const c1 = Math.min(Math.max(parseFloat(cia1Input?.value) || 0, 0), 25);
-        const c2 = Math.min(Math.max(parseFloat(cia2Input?.value) || 0, 0), 25);
-        const qz = Math.min(Math.max(parseFloat(quizInput?.value) || 0, 0), 20);
-        const es = Math.min(Math.max(parseFloat(endsemInput?.value) || 0, 0), 30);
-
-        const total = Math.round(c1 + c2 + qz + es);
-        const grade = getKarunyaGrade(total);
-
-        if (scorePreview) scorePreview.textContent = `${total} / 100`;
-        if (gradePreview) {
-            gradePreview.textContent = `${grade.letter} (${grade.point.toFixed(1)})`;
-            gradePreview.className = `grade-badge-sm ${grade.colorClass}`;
-        }
-        if (standingPreview) {
-            standingPreview.textContent = grade.status;
-            standingPreview.className = `standing-pill ${total < 50 ? 'standing-remedial' : ''}`;
-        }
-    }
-
     openBtns.forEach(btn => btn.addEventListener('click', openModal));
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -861,25 +935,6 @@ function initPortalModal() {
             closeModal();
         }
     });
-
-    [cia1Input, cia2Input, quizInput, endsemInput].filter(Boolean).forEach(input => {
-        input.addEventListener('input', updateModalPreview);
-    });
-
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const regNo = document.getElementById('student-reg')?.value || 'URK22CS1042';
-            const course = document.getElementById('course-select')?.value || 'Course';
-
-            closeModal();
-            showToast(`✓ Continuous assessment marks recorded for ${regNo} (${course})!`, 'success');
-
-            if (window.fireConfetti) {
-                window.fireConfetti();
-            }
-        });
-    }
 }
 
 
