@@ -5228,3 +5228,133 @@ footer::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Blank-First Interactive Entry Panels & Empty States
+   ========================================================================== */
+.grade-neutral {
+  background: var(--bg-subtle);
+  color: var(--text-subtle);
+  border: 1px solid var(--border-light);
+}
+
+.portal-empty-row td {
+  text-align: center;
+  padding: 26px 14px;
+  color: var(--text-subtle);
+  font-style: italic;
+  white-space: normal;
+}
+
+.dash-entry-panel {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.dash-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dash-entry-header h4 {
+  font-size: 1rem;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.dash-entry-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dash-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dash-course-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dash-course-row {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.dash-course-row input,
+.dash-course-row select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--text-main);
+  font-size: 0.875rem;
+}
+
+.dash-course-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.dash-empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--text-subtle);
+  font-size: 0.9rem;
+}
+
+[data-theme="dark"] .dash-entry-panel,
+[data-theme="dark"] .dash-empty-state {
+  background: #160b2e;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .dash-course-row input,
+[data-theme="dark"] .dash-course-row select {
+  background: #0d0821;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .grade-neutral {
+  background: #160b2e;
+  color: #94a3b8;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 900px) {
+  .dash-profile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-profile-grid,
+  .dash-course-row {
+    grid-template-columns: 1fr;
+  }
+}

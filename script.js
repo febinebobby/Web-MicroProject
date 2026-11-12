@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileNavigation();
     initDynamicAcademicYear();
 
-    // --- 4. Interactive Showcase & Mini-Cards ---
+    // --- 4. Interactive Showcase & Dashboard Workspace ---
+    initDashboardWorkspace();
     initSubjectCardInteractions();
     initProgressBarAnimations();
 
@@ -364,6 +365,328 @@ function initProgressBarAnimations() {
 
 /**
  * ------------------------------------------------------------------------------
+ * 5B. Blank-First Interactive Dashboard Workspace (dashboard.html)
+ * ------------------------------------------------------------------------------
+ * Starts completely blank; computes avatar initials, SGPA, academic standing,
+ * subject cards, progress fills, and AI insights only as data is entered or
+ * when the user clicks "Load Sample Data".
+ */
+function initDashboardWorkspace() {
+    const entryPanel = document.getElementById('dash-entry-panel');
+    if (!entryPanel) return;
+
+    const nameInput = document.getElementById('dash-input-name');
+    const regInput = document.getElementById('dash-input-reg');
+    const deptInput = document.getElementById('dash-input-dept');
+    const attInput = document.getElementById('dash-input-attendance');
+    const coursesContainer = document.getElementById('dash-course-inputs');
+    const addCourseBtn = document.getElementById('dash-add-course-btn');
+    const loadSampleBtn = document.getElementById('dash-load-sample-btn');
+    const resetBtn = document.getElementById('dash-reset-btn');
+
+    const statusPill = document.getElementById('dash-status-pill');
+    const avatarEl = document.getElementById('dash-avatar');
+    const displayNameEl = document.getElementById('dash-display-name');
+    const displayMetaEl = document.getElementById('dash-display-meta');
+    const kpiSgpaEl = document.getElementById('dash-kpi-sgpa');
+    const kpiStandingEl = document.getElementById('dash-kpi-standing');
+    const kpiAttEl = document.getElementById('dash-kpi-attendance');
+    const subjectGridEl = document.getElementById('dash-subject-grid');
+    const insightTextEl = document.getElementById('dash-insight-text');
+    const simSlider = document.getElementById('simMarksInput');
+
+    const sampleCourses = [
+        { name: 'Machine Learning & AI', credits: 4, score: 93 },
+        { name: 'Database Management', credits: 4, score: 86 },
+        { name: 'Computer Networks', credits: 3, score: 82 },
+        { name: 'Design & Analysis of Algorithms', credits: 4, score: 76 }
+    ];
+
+    function createCourseRow(name = '', credits = 4, score = '') {
+        const row = document.createElement('div');
+        row.className = 'dash-course-row';
+
+        const titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.className = 'dash-course-name';
+        titleInput.placeholder = 'Course Name (e.g. Data Structures)';
+        titleInput.value = name;
+
+        const creditSelect = document.createElement('select');
+        creditSelect.className = 'dash-course-credits';
+        [1, 2, 3, 4, 5].forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = `${c}.0 Credit${c > 1 ? 's' : ''}`;
+            if (c === credits) opt.selected = true;
+            creditSelect.appendChild(opt);
+        });
+
+        const scoreInput = document.createElement('input');
+        scoreInput.type = 'number';
+        scoreInput.className = 'dash-course-score';
+        scoreInput.min = '0';
+        scoreInput.max = '100';
+        scoreInput.placeholder = 'Marks (0-100)';
+        scoreInput.value = score !== '' && score !== null ? score : '';
+
+        const delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'btn-delete-row';
+        delBtn.title = 'Remove course';
+        delBtn.setAttribute('aria-label', 'Remove course');
+        delBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>';
+
+        [titleInput, scoreInput].forEach(el => el.addEventListener('input', renderDashboard));
+        creditSelect.addEventListener('change', renderDashboard);
+        delBtn.addEventListener('click', () => {
+            if (coursesContainer.querySelectorAll('.dash-course-row').length <= 1) {
+                titleInput.value = '';
+                scoreInput.value = '';
+                renderDashboard();
+                return;
+            }
+            row.remove();
+            renderDashboard();
+        });
+
+        row.append(titleInput, creditSelect, scoreInput, delBtn);
+        return row;
+    }
+
+    function getFillClass(score) {
+        if (score >= 90) return 'fill-emerald';
+        if (score >= 80) return 'fill-blue';
+        if (score >= 65) return 'fill-purple';
+        return 'fill-amber';
+    }
+
+    function renderDashboard() {
+        const studentName = (nameInput?.value || '').trim();
+        const regNo = (regInput?.value || '').trim();
+        const dept = (deptInput?.value || '').trim();
+        const rawAtt = (attInput?.value || '').trim();
+        const hasAtt = rawAtt !== '' && !isNaN(parseFloat(rawAtt));
+        const attVal = hasAtt ? Math.min(Math.max(parseFloat(rawAtt), 0), 100) : null;
+
+        // Initials & identity
+        if (studentName) {
+            const parts = studentName.split(/\s+/).filter(Boolean);
+            const initials = parts.length >= 2
+                ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+                : studentName.slice(0, 2).toUpperCase();
+            if (avatarEl) avatarEl.textContent = initials;
+            if (displayNameEl) displayNameEl.textContent = studentName;
+        } else {
+            if (avatarEl) avatarEl.textContent = '--';
+            if (displayNameEl) displayNameEl.textContent = 'No Student Data Entered';
+        }
+
+        if (regNo || dept) {
+            if (displayMetaEl) {
+                displayMetaEl.innerHTML = '';
+                if (regNo) {
+                    const regLabel = document.createTextNode('Register No: ');
+                    const strong = document.createElement('strong');
+                    strong.textContent = regNo;
+                    displayMetaEl.append(regLabel, strong);
+                }
+                if (regNo && dept) {
+                    displayMetaEl.appendChild(document.createTextNode(' \u2022 '));
+                }
+                if (dept) {
+                    displayMetaEl.appendChild(document.createTextNode(dept));
+                }
+            }
+        } else if (displayMetaEl) {
+            displayMetaEl.textContent = 'Enter student details above or click "Load Sample Data" for a live demo';
+        }
+
+        // Attendance KPI
+        if (kpiAttEl) {
+            kpiAttEl.textContent = hasAtt ? `${attVal.toFixed(1)}%` : '--%';
+        }
+
+        // Collect entered courses
+        const courseRows = coursesContainer.querySelectorAll('.dash-course-row');
+        const enteredCourses = [];
+        let totalCredits = 0;
+        let totalWeightedPoints = 0;
+        let arrears = 0;
+
+        courseRows.forEach(row => {
+            const cName = row.querySelector('.dash-course-name').value.trim();
+            const cCredits = parseFloat(row.querySelector('.dash-course-credits').value) || 0;
+            const scoreField = row.querySelector('.dash-course-score');
+            const rawScore = scoreField.value.trim();
+            if (rawScore === '' || isNaN(parseFloat(rawScore))) return;
+
+            let score = parseFloat(rawScore);
+            if (score > 100) { score = 100; scoreField.value = 100; }
+            if (score < 0) { score = 0; scoreField.value = 0; }
+
+            const grade = getKarunyaGrade(score);
+            totalCredits += cCredits;
+            totalWeightedPoints += cCredits * grade.point;
+            if (grade.letter === 'RA') arrears++;
+
+            enteredCourses.push({
+                name: cName || 'Untitled Course',
+                credits: cCredits,
+                score,
+                grade
+            });
+        });
+
+        // Compute SGPA & Standing
+        if (enteredCourses.length > 0 && totalCredits > 0) {
+            const sgpa = totalWeightedPoints / totalCredits;
+            const standing = arrears > 0 ? 'Remedial'
+                : sgpa >= 8.5 ? 'Distinction'
+                : sgpa >= 7.5 ? 'Honors'
+                : sgpa >= 6.5 ? 'First Class'
+                : 'Passed';
+
+            if (kpiSgpaEl) kpiSgpaEl.textContent = sgpa.toFixed(2);
+            if (kpiStandingEl) kpiStandingEl.textContent = standing;
+            if (statusPill) statusPill.textContent = 'Live Calculated';
+
+            // Render subject mini-cards
+            if (subjectGridEl) {
+                subjectGridEl.innerHTML = '';
+                enteredCourses.forEach((course, idx) => {
+                    const card = document.createElement('div');
+                    card.className = `subject-mini-card${idx === 0 ? ' selected-card' : ''}`;
+                    card.tabIndex = 0;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('aria-label', `Inspect ${course.name}`);
+                    card.style.cursor = 'pointer';
+
+                    const meta = document.createElement('div');
+                    meta.className = 'subject-meta';
+                    const h5 = document.createElement('h5');
+                    h5.textContent = course.name;
+                    const pill = document.createElement('span');
+                    pill.className = `grade-pill ${course.grade.colorClass}`;
+                    pill.textContent = `${course.grade.letter} Grade`;
+                    meta.append(h5, pill);
+
+                    const scores = document.createElement('div');
+                    scores.className = 'subject-scores';
+                    const s1 = document.createElement('span');
+                    s1.innerHTML = `Score: <strong>${course.score} / 100</strong>`;
+                    const s2 = document.createElement('span');
+                    s2.innerHTML = `Credits: <strong>${course.credits.toFixed(1)}</strong>`;
+                    scores.append(s1, s2);
+
+                    const track = document.createElement('div');
+                    track.className = 'progress-track';
+                    const fill = document.createElement('div');
+                    fill.className = `progress-fill ${getFillClass(course.score)}`;
+                    fill.style.width = `${course.score}%`;
+                    track.appendChild(fill);
+
+                    card.append(meta, scores, track);
+
+                    const showCardInsight = () => {
+                        subjectGridEl.querySelectorAll('.subject-mini-card').forEach(c => c.classList.remove('selected-card'));
+                        card.classList.add('selected-card');
+                        if (insightTextEl) {
+                            insightTextEl.innerHTML = '';
+                            const strong = document.createElement('strong');
+                            strong.textContent = `${course.name} (${course.score}/100 \u2022 ${course.grade.letter}): `;
+                            insightTextEl.append(strong, document.createTextNode(`${course.grade.status}. ${course.grade.remark}`));
+                        }
+                    };
+                    card.addEventListener('click', showCardInsight);
+                    card.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            showCardInsight();
+                        }
+                    });
+
+                    subjectGridEl.appendChild(card);
+                });
+            }
+
+            // Overall AI Insight
+            if (insightTextEl) {
+                const topCourse = [...enteredCourses].sort((a, b) => b.score - a.score)[0];
+                let attNote = '';
+                if (hasAtt && attVal < 75) {
+                    attNote = ' Warning: Attendance is below the 75% university eligibility threshold.';
+                } else if (hasAtt && attVal >= 90) {
+                    attNote = ` Attendance (${attVal.toFixed(1)}%) qualifies cleanly for all exams.`;
+                }
+                insightTextEl.innerHTML = '';
+                const strong = document.createElement('strong');
+                strong.textContent = 'Academic Performance Insight: ';
+                insightTextEl.append(
+                    strong,
+                    document.createTextNode(`Computed SGPA is ${sgpa.toFixed(2)} (${standing}) across ${totalCredits.toFixed(1)} credits. Highest performance in ${topCourse.name} (${topCourse.score}/100).${attNote}`)
+                );
+            }
+        } else {
+            if (kpiSgpaEl) kpiSgpaEl.textContent = '--';
+            if (kpiStandingEl) kpiStandingEl.textContent = 'Awaiting Data';
+            if (statusPill) statusPill.textContent = (studentName || regNo || dept || hasAtt) ? 'Profile Entered' : 'Awaiting Input';
+
+            if (subjectGridEl) {
+                subjectGridEl.innerHTML = '<div class="dash-empty-state">No courses entered yet. Fill in a course and score above, or click <strong>\u26a1 Load Sample Data</strong> to preview subject grade cards.</div>';
+            }
+            if (insightTextEl) {
+                insightTextEl.innerHTML = '<strong>Academic Performance Insight:</strong> Enter student courses and attendance above to generate real-time CBCS standing and personalized advisor recommendations.';
+            }
+        }
+    }
+
+    function clearDashboard(showNotice = false) {
+        if (nameInput) nameInput.value = '';
+        if (regInput) regInput.value = '';
+        if (deptInput) deptInput.value = '';
+        if (attInput) attInput.value = '';
+        coursesContainer.innerHTML = '';
+        coursesContainer.appendChild(createCourseRow('', 4, ''));
+        if (simSlider) simSlider.dispatchEvent(new Event('reset-pristine'));
+        renderDashboard();
+        if (showNotice) showToast('Dashboard cleared', 'info');
+    }
+
+    function loadSampleDashboard() {
+        if (nameInput) nameInput.value = 'Kavitha R.';
+        if (regInput) regInput.value = 'URK22CS1042';
+        if (deptInput) deptInput.value = 'B.Tech Computer Science & Engineering';
+        if (attInput) attInput.value = '94.5';
+        coursesContainer.innerHTML = '';
+        sampleCourses.forEach(c => coursesContainer.appendChild(createCourseRow(c.name, c.credits, c.score)));
+        if (simSlider) {
+            simSlider.value = 88;
+            simSlider.dispatchEvent(new Event('input'));
+        }
+        renderDashboard();
+        showToast('Sample student analytics data loaded!', 'success');
+    }
+
+    [nameInput, regInput, deptInput, attInput].filter(Boolean).forEach(input => {
+        input.addEventListener('input', renderDashboard);
+    });
+
+    if (addCourseBtn) {
+        addCourseBtn.addEventListener('click', () => {
+            coursesContainer.appendChild(createCourseRow('', 4, ''));
+        });
+    }
+    if (loadSampleBtn) loadSampleBtn.addEventListener('click', loadSampleDashboard);
+    if (resetBtn) resetBtn.addEventListener('click', () => clearDashboard(true));
+
+    // Start completely blank
+    clearDashboard(false);
+}
+
+
+/**
+ * ------------------------------------------------------------------------------
  * 6. Interactive Subject Cards in Showcase Dashboard
  * ------------------------------------------------------------------------------
  */
@@ -446,7 +769,21 @@ function initGradeSimulator() {
 
     let hasCelebrated = false;
 
+    function resetSimulator() {
+        slider.value = 0;
+        slider.setAttribute('data-pristine', 'true');
+        scoreVal.textContent = '--';
+        gradePill.textContent = '--';
+        gradePill.className = 'sim-grade-pill grade-neutral';
+        gradePoint.textContent = '--';
+        statusPill.textContent = 'Awaiting Input';
+        remark.textContent = 'Move the slider or pick a score to calculate grade';
+        presetButtons.forEach(btn => btn.classList.remove('active'));
+        hasCelebrated = false;
+    }
+
     function updateSimulator(score, triggerConfetti = true) {
+        slider.removeAttribute('data-pristine');
         scoreVal.textContent = score;
         const res = getKarunyaGrade(score);
 
@@ -479,6 +816,8 @@ function initGradeSimulator() {
         updateSimulator(score);
     });
 
+    slider.addEventListener('reset-pristine', resetSimulator);
+
     presetButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const score = parseInt(btn.getAttribute('data-score'), 10);
@@ -487,7 +826,11 @@ function initGradeSimulator() {
         });
     });
 
-    updateSimulator(parseInt(slider.value, 10), false);
+    if (slider.getAttribute('data-pristine') === 'true') {
+        resetSimulator();
+    } else {
+        updateSimulator(parseInt(slider.value, 10), false);
+    }
 }
 
 
@@ -525,10 +868,11 @@ function initSGPACalculator() {
 
     let rowCounter = 0;
 
-    function createRow(name = '', credits = 4, marks = 85) {
+    function createRow(name = '', credits = 4, marks = '') {
         rowCounter++;
         const rowId = `calc-row-${rowCounter}`;
-        const gradeInfo = getKarunyaGrade(marks);
+        const hasMarks = marks !== '' && marks !== null && !isNaN(parseFloat(marks));
+        const gradeInfo = hasMarks ? getKarunyaGrade(parseFloat(marks)) : null;
 
         const tr = document.createElement('tr');
         tr.id = rowId;
@@ -548,15 +892,15 @@ function initSGPACalculator() {
             </td>
             <td>
                 <div class="calc-mark-input-wrap">
-                    <input type="number" class="calc-input-marks" min="0" max="100" value="${marks}" placeholder="0-100">
+                    <input type="number" class="calc-input-marks" min="0" max="100" value="${hasMarks ? marks : ''}" placeholder="0-100">
                     <span class="calc-mark-suffix">/ 100</span>
                 </div>
             </td>
             <td>
-                <span class="grade-badge-sm ${gradeInfo.colorClass} row-grade-badge">${gradeInfo.letter}</span>
+                <span class="grade-badge-sm ${gradeInfo ? gradeInfo.colorClass : 'grade-neutral'} row-grade-badge">${gradeInfo ? gradeInfo.letter : '--'}</span>
             </td>
             <td>
-                <strong class="row-gp-val">${gradeInfo.point.toFixed(1)}</strong>
+                <strong class="row-gp-val">${gradeInfo ? gradeInfo.point.toFixed(1) : '--'}</strong>
             </td>
             <td>
                 <button type="button" class="btn-delete-row" aria-label="Delete course row" title="Remove course">
@@ -573,7 +917,16 @@ function initSGPACalculator() {
         const gpVal = tr.querySelector('.row-gp-val');
 
         function updateRowGrade() {
-            let val = parseFloat(marksInput.value);
+            const raw = marksInput.value.trim();
+            if (raw === '') {
+                badge.textContent = '--';
+                badge.className = 'grade-badge-sm grade-neutral row-grade-badge';
+                gpVal.textContent = '--';
+                calculateTotalSGPA();
+                return;
+            }
+
+            let val = parseFloat(raw);
             if (isNaN(val)) val = 0;
             if (val > 100) { val = 100; marksInput.value = 100; }
             if (val < 0) { val = 0; marksInput.value = 0; }
@@ -606,13 +959,18 @@ function initSGPACalculator() {
         let totalCredits = 0;
         let totalQualityPoints = 0;
         let arrearsCount = 0;
+        let enteredCount = 0;
 
         rows.forEach(row => {
-            const credits = parseFloat(row.querySelector('.calc-select-credits').value) || 0;
-            let marks = parseFloat(row.querySelector('.calc-input-marks').value);
-            if (isNaN(marks)) marks = 0;
+            const rawMarks = row.querySelector('.calc-input-marks').value.trim();
+            if (rawMarks === '') return;
 
+            const marks = parseFloat(rawMarks);
+            if (isNaN(marks)) return;
+
+            const credits = parseFloat(row.querySelector('.calc-select-credits').value) || 0;
             const res = getKarunyaGrade(marks);
+            enteredCount++;
             totalCredits += credits;
             totalQualityPoints += (credits * res.point);
 
@@ -621,18 +979,27 @@ function initSGPACalculator() {
             }
         });
 
-        let sgpa = 0;
-        if (totalCredits > 0) {
-            sgpa = totalQualityPoints / totalCredits;
+        if (enteredCount === 0) {
+            if (resultSgpa) resultSgpa.textContent = '0.00';
+            if (resultCredits) resultCredits.textContent = '0.0';
+            if (resultPercentage) resultPercentage.textContent = '0.0%';
+            if (resultStanding) {
+                resultStanding.textContent = 'Awaiting Marks';
+                resultStanding.className = 'standing-pill';
+            }
+            if (resultArrears) {
+                resultArrears.textContent = 'Pending';
+                resultArrears.className = 'metric-value-sm';
+            }
+            if (resultStatusText) {
+                resultStatusText.textContent = 'Enter marks to compute';
+            }
+            return;
         }
 
-        // Percentage conversion according to AICTE / UGC standard: (SGPA - 0.5) * 10
-        let percentage = 0;
-        if (sgpa > 0) {
-            percentage = Math.max((sgpa - 0.5) * 10, 0);
-        }
+        let sgpa = totalCredits > 0 ? (totalQualityPoints / totalCredits) : 0;
+        let percentage = sgpa > 0 ? Math.max((sgpa - 0.5) * 10, 0) : 0;
 
-        // Determine Academic Honors Standing
         let standing = 'Awaiting Marks';
         if (sgpa >= 8.5 && arrearsCount === 0) {
             standing = 'First Class with Distinction';
@@ -646,7 +1013,6 @@ function initSGPACalculator() {
             standing = 'Remedial Required';
         }
 
-        // Update DOM elements
         if (resultSgpa) resultSgpa.textContent = sgpa.toFixed(2);
         if (resultCredits) resultCredits.textContent = totalCredits.toFixed(1);
         if (resultPercentage) resultPercentage.textContent = `${percentage.toFixed(1)}%`;
@@ -662,7 +1028,6 @@ function initSGPACalculator() {
             resultStatusText.textContent = arrearsCount === 0 ? '0 Backlogs detected' : 'Requires re-examination';
         }
 
-        // Celebrate if SGPA >= 9.0
         if (sgpa >= 9.0 && window.fireConfetti && arrearsCount === 0) {
             window.fireConfetti();
         }
@@ -679,30 +1044,32 @@ function initSGPACalculator() {
     // Button event listeners
     if (addRowBtn) {
         addRowBtn.addEventListener('click', () => {
-            rowsContainer.appendChild(createRow('New Elective Course', 3, 80));
+            rowsContainer.appendChild(createRow('', 4, ''));
             calculateTotalSGPA();
-            showToast('Course subject added to calculator', 'info');
+            showToast('Blank course row added — enter marks to calculate', 'info');
         });
     }
 
     if (fillSem1Btn) {
         fillSem1Btn.addEventListener('click', () => {
             populatePreset(sem1Preset);
-            showToast('Semester 1 course model loaded!', 'success');
+            showToast('Sample Semester 1 data loaded!', 'success');
         });
     }
 
     if (resetBtn) {
         resetBtn.addEventListener('click', () => {
             rowsContainer.innerHTML = '';
-            rowsContainer.appendChild(createRow('Subject 1', 4, 80));
+            rowsContainer.appendChild(createRow('', 4, ''));
             calculateTotalSGPA();
-            showToast('Calculator reset to default', 'info');
+            showToast('Calculator cleared', 'info');
         });
     }
 
-    // Initialize with Semester 1 Preset
-    populatePreset(sem1Preset);
+    // Initialize blank (no dummy data until user enters marks or clicks Load Sample Data)
+    rowsContainer.innerHTML = '';
+    rowsContainer.appendChild(createRow('', 4, ''));
+    calculateTotalSGPA();
 }
 
 
@@ -790,6 +1157,14 @@ function initPortalModal() {
     const standingPreview = document.getElementById('modal-standing-preview');
     const recentTbody = document.getElementById('portal-recent-tbody');
     const exportCsvBtn = document.getElementById('portal-export-csv-btn');
+    const sampleBtn = document.getElementById('portal-sample-btn');
+    const clearBtn = document.getElementById('portal-clear-btn');
+
+    function hasAnyMarkEntered() {
+        return [cia1Input, cia2Input, quizInput, endsemInput]
+            .filter(Boolean)
+            .some(el => el.value.trim() !== '');
+    }
 
     function getPortalScores() {
         const c1 = Math.min(Math.max(parseFloat(cia1Input?.value) || 0, 0), 25);
@@ -801,6 +1176,19 @@ function initPortalModal() {
     }
 
     function updateModalPreview() {
+        if (!hasAnyMarkEntered()) {
+            if (scorePreview) scorePreview.textContent = '-- / 100';
+            if (gradePreview) {
+                gradePreview.textContent = '--';
+                gradePreview.className = 'grade-badge-sm grade-neutral';
+            }
+            if (standingPreview) {
+                standingPreview.textContent = 'Awaiting Marks';
+                standingPreview.className = 'standing-pill';
+            }
+            return;
+        }
+
         const { total, grade } = getPortalScores();
 
         if (scorePreview) scorePreview.textContent = `${total} / 100`;
@@ -814,6 +1202,46 @@ function initPortalModal() {
         }
     }
 
+    function appendAuditRow(regNo, studentName, total, grade) {
+        if (!recentTbody) return;
+        const emptyRow = recentTbody.querySelector('.portal-empty-row');
+        if (emptyRow) emptyRow.remove();
+
+        const tr = document.createElement('tr');
+        const shortStatus = total >= 90 ? 'Distinction'
+            : total >= 80 ? 'Honors'
+            : total >= 70 ? 'Very Good'
+            : total >= 60 ? 'Good'
+            : total >= 50 ? 'Passed'
+            : 'Re-Appear';
+
+        const tdReg = document.createElement('td');
+        const strongReg = document.createElement('strong');
+        strongReg.textContent = regNo;
+        tdReg.appendChild(strongReg);
+
+        const tdName = document.createElement('td');
+        tdName.textContent = studentName;
+
+        const tdScore = document.createElement('td');
+        tdScore.textContent = `${total} / 100`;
+
+        const tdGrade = document.createElement('td');
+        const gradeBadge = document.createElement('span');
+        gradeBadge.className = `grade-badge-sm ${grade.colorClass}`;
+        gradeBadge.textContent = grade.letter;
+        tdGrade.appendChild(gradeBadge);
+
+        const tdStatus = document.createElement('td');
+        const statusPill = document.createElement('span');
+        statusPill.className = `standing-pill ${total < 50 ? 'standing-remedial' : ''}`;
+        statusPill.textContent = shortStatus;
+        tdStatus.appendChild(statusPill);
+
+        tr.append(tdReg, tdName, tdScore, tdGrade, tdStatus);
+        recentTbody.prepend(tr);
+    }
+
     // Always wire inputs for live calculation (whether modal or standalone portal page)
     [cia1Input, cia2Input, quizInput, endsemInput].filter(Boolean).forEach(input => {
         input.addEventListener('input', updateModalPreview);
@@ -823,47 +1251,17 @@ function initPortalModal() {
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const regNo = (document.getElementById('student-reg')?.value || 'URK24CS1042').trim();
-            const studentName = (document.getElementById('student-name')?.value || 'Student').trim();
-            const course = document.getElementById('course-select')?.value || 'Course';
-            const { total, grade } = getPortalScores();
+            const regNo = (document.getElementById('student-reg')?.value || '').trim();
+            const studentName = (document.getElementById('student-name')?.value || '').trim();
+            const course = document.getElementById('course-select')?.value || '';
 
-            // If on dedicated portal page, prepend the new record to the audit table
-            if (recentTbody) {
-                const tr = document.createElement('tr');
-                const shortStatus = total >= 90 ? 'Distinction'
-                    : total >= 80 ? 'Honors'
-                    : total >= 70 ? 'Very Good'
-                    : total >= 60 ? 'Good'
-                    : total >= 50 ? 'Passed'
-                    : 'Re-Appear';
-
-                const tdReg = document.createElement('td');
-                const strongReg = document.createElement('strong');
-                strongReg.textContent = regNo;
-                tdReg.appendChild(strongReg);
-
-                const tdName = document.createElement('td');
-                tdName.textContent = studentName;
-
-                const tdScore = document.createElement('td');
-                tdScore.textContent = `${total} / 100`;
-
-                const tdGrade = document.createElement('td');
-                const gradeBadge = document.createElement('span');
-                gradeBadge.className = `grade-badge-sm ${grade.colorClass}`;
-                gradeBadge.textContent = grade.letter;
-                tdGrade.appendChild(gradeBadge);
-
-                const tdStatus = document.createElement('td');
-                const statusPill = document.createElement('span');
-                statusPill.className = `standing-pill ${total < 50 ? 'standing-remedial' : ''}`;
-                statusPill.textContent = shortStatus;
-                tdStatus.appendChild(statusPill);
-
-                tr.append(tdReg, tdName, tdScore, tdGrade, tdStatus);
-                recentTbody.prepend(tr);
+            if (!regNo || !studentName || !course || !hasAnyMarkEntered()) {
+                showToast('Please fill in student details, course, and marks before submitting.', 'warning');
+                return;
             }
+
+            const { total, grade } = getPortalScores();
+            appendAuditRow(regNo, studentName, total, grade);
 
             if (modal && modal.classList.contains('is-open')) {
                 closeModal();
@@ -876,11 +1274,55 @@ function initPortalModal() {
         });
     }
 
+    if (sampleBtn) {
+        sampleBtn.addEventListener('click', () => {
+            const regEl = document.getElementById('student-reg');
+            const nameEl = document.getElementById('student-name');
+            const courseEl = document.getElementById('course-select');
+            if (regEl) regEl.value = 'URK22CS1042';
+            if (nameEl) nameEl.value = 'Kavitha R.';
+            if (courseEl) courseEl.value = 'Machine Learning & AI';
+            if (cia1Input) cia1Input.value = 23;
+            if (cia2Input) cia2Input.value = 22;
+            if (quizInput) quizInput.value = 19;
+            if (endsemInput) endsemInput.value = 28;
+            updateModalPreview();
+
+            // Also seed demo audit records if table is currently empty
+            if (recentTbody && recentTbody.querySelector('.portal-empty-row')) {
+                [
+                    { reg: 'URK22CS1088', name: 'Sneha Miriam', total: 78 },
+                    { reg: 'URK22CS1015', name: 'Aaron Philip', total: 86 },
+                    { reg: 'URK22CS1042', name: 'Kavitha R.', total: 92 }
+                ].forEach(s => appendAuditRow(s.reg, s.name, s.total, getKarunyaGrade(s.total)));
+            }
+
+            showToast('Sample student assessment data loaded!', 'success');
+        });
+    }
+
+    if (clearBtn && form) {
+        clearBtn.addEventListener('click', () => {
+            form.reset();
+            updateModalPreview();
+            if (recentTbody) {
+                recentTbody.innerHTML = '<tr class="portal-empty-row"><td colspan="5">No assessment records yet. Enter marks on the left or click &ldquo;Load Sample Data&rdquo; for a demo.</td></tr>';
+            }
+            showToast('Portal form and records cleared', 'info');
+        });
+    }
+
     // Real CSV Export for the Portal Audit Table
     if (exportCsvBtn && recentTbody) {
         exportCsvBtn.addEventListener('click', () => {
+            const dataRows = Array.from(recentTbody.querySelectorAll('tr:not(.portal-empty-row)'));
+            if (!dataRows.length) {
+                showToast('No records to export yet. Submit an assessment or click Load Sample Data first.', 'warning');
+                return;
+            }
+
             const rows = [['Register No', 'Student Name', 'Score', 'Grade', 'Standing']];
-            recentTbody.querySelectorAll('tr').forEach(tr => {
+            dataRows.forEach(tr => {
                 const cells = Array.from(tr.querySelectorAll('td')).map(td => {
                     const text = td.textContent.trim().replace(/\s+/g, ' ');
                     return `"${text.replace(/"/g, '""')}"`;

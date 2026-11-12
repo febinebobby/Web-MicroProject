@@ -107,32 +107,78 @@
                 </div>
                 <div class="mockup-title">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-                    Official Student Transcript View &bull; Semester V (Odd 2026-27 CBCS)
+                    Official Student Transcript View &bull; CBCS Live Analytics
                 </div>
-                <span class="status-pill">Live Simulated Record</span>
+                <span class="status-pill" id="dash-status-pill">Awaiting Input</span>
             </div>
 
             <div class="mockup-body">
+                <!-- Interactive Student & Course Entry Bar (Starts Blank) -->
+                <div class="dash-entry-panel" id="dash-entry-panel">
+                    <div class="dash-entry-header">
+                        <h4>📝 Enter Student &amp; Course Marks (Auto-Calculates Live)</h4>
+                        <div class="dash-entry-actions">
+                            <button type="button" class="btn-calc-preset" id="dash-load-sample-btn">
+                                <span>⚡ Load Sample Data</span>
+                            </button>
+                            <button type="button" class="btn-calc-preset btn-preset-clear" id="dash-reset-btn">
+                                <span>🔄 Clear</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dash-profile-grid">
+                        <div class="form-group">
+                            <label for="dash-input-name">Student Name</label>
+                            <input type="text" id="dash-input-name" value="" placeholder="e.g. Kavitha R.">
+                        </div>
+                        <div class="form-group">
+                            <label for="dash-input-reg">Register No</label>
+                            <input type="text" id="dash-input-reg" value="" placeholder="e.g. URK24CS1001">
+                        </div>
+                        <div class="form-group">
+                            <label for="dash-input-dept">Department / Sem</label>
+                            <input type="text" id="dash-input-dept" value="" placeholder="e.g. B.Tech CSE • Sem I">
+                        </div>
+                        <div class="form-group">
+                            <label for="dash-input-attendance">Attendance (%)</label>
+                            <input type="number" id="dash-input-attendance" min="0" max="100" step="0.1" value="" placeholder="0–100">
+                        </div>
+                    </div>
+
+                    <div class="dash-course-inputs" id="dash-course-inputs">
+                        <!-- Blank course rows injected dynamically via script.js -->
+                    </div>
+
+                    <div class="dash-course-footer">
+                        <button type="button" class="btn-add-subject" id="dash-add-course-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            <span>Add Course</span>
+                        </button>
+                        <span class="calc-hint">💡 Enter marks (0–100) to calculate SGPA, subject grades &amp; AI insights live</span>
+                    </div>
+                </div>
+
                 <!-- Student Identity Strip -->
                 <div class="student-bar">
                     <div class="student-identity">
-                        <div class="student-avatar">KR</div>
+                        <div class="student-avatar" id="dash-avatar">--</div>
                         <div class="student-details">
-                            <h4>Kavitha R.</h4>
-                            <p>Register No: <strong>URK22CS1042</strong> &bull; B.Tech Computer Science &amp; Engineering</p>
+                            <h4 id="dash-display-name">No Student Data Entered</h4>
+                            <p id="dash-display-meta">Enter student details above or click &ldquo;Load Sample Data&rdquo; for a live demo</p>
                         </div>
                     </div>
                     <div class="student-kpis">
                         <div class="kpi-badge cgpa">
-                            <span class="kpi-val" data-target="8.92" data-decimals="2">0.00</span>
-                            <span>Current CGPA</span>
+                            <span class="kpi-val" id="dash-kpi-sgpa">--</span>
+                            <span>Computed SGPA</span>
                         </div>
                         <div class="kpi-badge standing">
-                            <span class="kpi-val">Distinction</span>
+                            <span class="kpi-val" id="dash-kpi-standing">Awaiting Data</span>
                             <span>Academic Standing</span>
                         </div>
                         <div class="kpi-badge attendance">
-                            <span class="kpi-val" data-target="94.5" data-suffix="%" data-decimals="1">0.0%</span>
+                            <span class="kpi-val" id="dash-kpi-attendance">--%</span>
                             <span>Attendance</span>
                         </div>
                     </div>
@@ -141,77 +187,21 @@
                 <!-- Interactive Subject Selection Hint -->
                 <div class="subject-grid-hint">
                     <span class="hint-sparkle">✨</span>
-                    <span>Click any course card below to inspect AI performance diagnostics and tailored suggestions</span>
+                    <span>Click any generated course card below to inspect AI performance diagnostics and tailored suggestions</span>
                 </div>
 
-                <!-- Subject Breakdown Mini Cards with Interactive Hover Tilt & Animated Fill -->
-                <div class="subject-grid">
-                    <!-- Subject 1 -->
-                    <div class="subject-mini-card selected-card" tabindex="0" role="button" aria-label="Select Machine Learning">
-                        <div class="subject-meta">
-                            <h5>Machine Learning &amp; AI</h5>
-                            <span class="grade-pill grade-o">O Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>93 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-emerald" data-width="93"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 2 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Database Management">
-                        <div class="subject-meta">
-                            <h5>Database Management</h5>
-                            <span class="grade-pill grade-aplus">A+ Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>86 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-blue" data-width="86"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 3 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Computer Networks">
-                        <div class="subject-meta">
-                            <h5>Computer Networks</h5>
-                            <span class="grade-pill grade-aplus">A+ Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>82 / 100</strong></span>
-                            <span>Credits: <strong>3.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-blue" data-width="82"></div>
-                        </div>
-                    </div>
-
-                    <!-- Subject 4 -->
-                    <div class="subject-mini-card" tabindex="0" role="button" aria-label="Select Design and Analysis of Algorithms">
-                        <div class="subject-meta">
-                            <h5>Design &amp; Analysis of Algorithms</h5>
-                            <span class="grade-pill grade-a">A Grade</span>
-                        </div>
-                        <div class="subject-scores">
-                            <span>Score: <strong>76 / 100</strong></span>
-                            <span>Credits: <strong>4.0</strong></span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill fill-purple" data-width="76"></div>
-                        </div>
+                <!-- Subject Breakdown Mini Cards (Rendered dynamically from entered courses) -->
+                <div class="subject-grid" id="dash-subject-grid">
+                    <div class="dash-empty-state">
+                        No courses entered yet. Fill in a course and score above, or click <strong>⚡ Load Sample Data</strong> to preview subject grade cards.
                     </div>
                 </div>
 
                 <!-- AI Academic Insight Callout -->
                 <div class="mockup-insight-banner">
                     <span class="insight-icon">💡</span>
-                    <div class="insight-text">
-                        <strong>Academic Performance Insight:</strong> Student demonstrates exceptional conceptual clarity in Data Science &amp; Machine Learning (Top 5% of cohort). Recommendation: Eligible for Honors track elective specialization.
+                    <div class="insight-text" id="dash-insight-text">
+                        <strong>Academic Performance Insight:</strong> Enter student courses and attendance above to generate real-time CBCS standing and personalized advisor recommendations.
                     </div>
                 </div>
 
@@ -233,17 +223,17 @@
                             <div class="sim-slider-header">
                                 <label for="simMarksInput" class="sim-label">Continuous Assessment / Total Score:</label>
                                 <div class="sim-score-badge">
-                                    <span id="simScoreValue">88</span> <span class="score-max">/ 100</span>
+                                    <span id="simScoreValue">--</span> <span class="score-max">/ 100</span>
                                 </div>
                             </div>
-                            <input type="range" id="simMarksInput" class="sim-range-slider" min="0" max="100" value="88" aria-label="Marks Slider">
+                            <input type="range" id="simMarksInput" class="sim-range-slider" min="0" max="100" value="0" data-pristine="true" aria-label="Marks Slider">
                             
                             <!-- Quick Score Presets -->
                             <div class="sim-presets">
                                 <span class="presets-label">Try Scores:</span>
                                 <div class="preset-buttons">
                                     <button type="button" class="preset-chip" data-score="95">95 (O)</button>
-                                    <button type="button" class="preset-chip active" data-score="88">88 (A+)</button>
+                                    <button type="button" class="preset-chip" data-score="88">88 (A+)</button>
                                     <button type="button" class="preset-chip" data-score="78">78 (A)</button>
                                     <button type="button" class="preset-chip" data-score="66">66 (B+)</button>
                                     <button type="button" class="preset-chip" data-score="55">55 (B)</button>
@@ -256,17 +246,17 @@
                         <div class="sim-results-grid">
                             <div class="sim-result-box grade-result">
                                 <span class="result-label">Letter Grade</span>
-                                <div class="sim-grade-pill grade-aplus" id="simGradePill">A+</div>
+                                <div class="sim-grade-pill grade-neutral" id="simGradePill">--</div>
                             </div>
                             <div class="sim-result-box">
                                 <span class="result-label">Grade Point</span>
-                                <div class="sim-point-value" id="simGradePoint">9.0</div>
+                                <div class="sim-point-value" id="simGradePoint">--</div>
                                 <span class="result-scale">out of 10.0</span>
                             </div>
                             <div class="sim-result-box status-result">
                                 <span class="result-label">Evaluation Standing</span>
-                                <div class="sim-status-pill" id="simStatusPill">Passed with Honors</div>
-                                <div class="sim-remark" id="simRemark">Outstanding academic competence</div>
+                                <div class="sim-status-pill" id="simStatusPill">Awaiting Input</div>
+                                <div class="sim-remark" id="simRemark">Move the slider or pick a score to calculate grade</div>
                             </div>
                         </div>
                     </div>

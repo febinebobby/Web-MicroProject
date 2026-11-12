@@ -115,11 +115,11 @@
                     <div class="form-row form-row-2">
                         <div class="form-group">
                             <label for="student-reg">Student Register Number</label>
-                            <input type="text" id="student-reg" value="URK22CS1042" placeholder="e.g. URK24CS1001" required>
+                            <input type="text" id="student-reg" value="" placeholder="e.g. URK24CS1001" required>
                         </div>
                         <div class="form-group">
                             <label for="student-name">Student Full Name</label>
-                            <input type="text" id="student-name" value="Kavitha R." placeholder="Student Name" required>
+                            <input type="text" id="student-name" value="" placeholder="Enter Student Full Name" required>
                         </div>
                     </div>
 
@@ -127,6 +127,7 @@
                         <div class="form-group">
                             <label for="course-select">Select Academic Course / Subject</label>
                             <select id="course-select" required>
+                                <option value="" disabled selected>Select Academic Course...</option>
                                 <option value="Machine Learning &amp; AI" data-credits="4">24CS201 &ndash; Machine Learning &amp; AI (4 Credits)</option>
                                 <option value="Database Management" data-credits="4">24CS202 &ndash; Database Management (4 Credits)</option>
                                 <option value="Computer Networks" data-credits="3">24CS203 &ndash; Computer Networks (3 Credits)</option>
@@ -139,19 +140,19 @@
                     <div class="form-marks-grid">
                         <div class="form-group">
                             <label for="mark-cia1">CIA-1 (Max 25)</label>
-                            <input type="number" id="mark-cia1" min="0" max="25" value="23" required>
+                            <input type="number" id="mark-cia1" min="0" max="25" value="" placeholder="0-25" required>
                         </div>
                         <div class="form-group">
                             <label for="mark-cia2">CIA-2 (Max 25)</label>
-                            <input type="number" id="mark-cia2" min="0" max="25" value="22" required>
+                            <input type="number" id="mark-cia2" min="0" max="25" value="" placeholder="0-25" required>
                         </div>
                         <div class="form-group">
                             <label for="mark-quiz">Quizzes (Max 20)</label>
-                            <input type="number" id="mark-quiz" min="0" max="20" value="19" required>
+                            <input type="number" id="mark-quiz" min="0" max="20" value="" placeholder="0-20" required>
                         </div>
                         <div class="form-group">
                             <label for="mark-endsem">Model / Lab (Max 30)</label>
-                            <input type="number" id="mark-endsem" min="0" max="30" value="28" required>
+                            <input type="number" id="mark-endsem" min="0" max="30" value="" placeholder="0-30" required>
                         </div>
                     </div>
 
@@ -159,15 +160,15 @@
                     <div class="modal-preview-bar" style="margin-top: 6px;">
                         <div class="preview-item">
                             <span>Computed Total:</span>
-                            <strong id="modal-score-preview">92 / 100</strong>
+                            <strong id="modal-score-preview">-- / 100</strong>
                         </div>
                         <div class="preview-item">
                             <span>Predicted Grade:</span>
-                            <span class="grade-badge-sm grade-o" id="modal-grade-preview">O (10.0)</span>
+                            <span class="grade-badge-sm grade-neutral" id="modal-grade-preview">--</span>
                         </div>
                         <div class="preview-item">
                             <span>CBCS Standing:</span>
-                            <span class="standing-pill" id="modal-standing-preview">Passed with Distinction</span>
+                            <span class="standing-pill" id="modal-standing-preview">Awaiting Marks</span>
                         </div>
                     </div>
 
@@ -176,10 +177,10 @@
                         <button type="submit" class="btn-primary" style="flex: 1;">
                             <span>✓ Record &amp; Submit Assessment</span>
                         </button>
-                        <button type="button" class="btn-secondary" id="portal-sample-btn" onclick="document.getElementById('mark-cia1').value=24; document.getElementById('mark-cia2').value=25; document.getElementById('mark-quiz').value=20; document.getElementById('mark-endsem').value=28; document.getElementById('mark-cia1').dispatchEvent(new Event('input')); showToast('Sample high distinction scores loaded!', 'info');">
-                            ⚡ Sample 97 (O)
+                        <button type="button" class="btn-secondary" id="portal-sample-btn">
+                            ⚡ Load Sample Data
                         </button>
-                        <button type="reset" class="btn-secondary" onclick="setTimeout(() => document.getElementById('mark-cia1').dispatchEvent(new Event('input')), 50);">
+                        <button type="button" class="btn-secondary" id="portal-clear-btn">
                             🔄 Clear
                         </button>
                     </div>
@@ -222,33 +223,8 @@
                                 </tr>
                             </thead>
                             <tbody id="portal-recent-tbody">
-                                <tr>
-                                    <td><strong>URK22CS1042</strong></td>
-                                    <td>Kavitha R.</td>
-                                    <td>92 / 100</td>
-                                    <td><span class="grade-badge-sm grade-o">O</span></td>
-                                    <td><span class="standing-pill">Distinction</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>URK22CS1015</strong></td>
-                                    <td>Aaron Philip</td>
-                                    <td>86 / 100</td>
-                                    <td><span class="grade-badge-sm grade-aplus">A+</span></td>
-                                    <td><span class="standing-pill">Honors</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>URK22CS1088</strong></td>
-                                    <td>Sneha Miriam</td>
-                                    <td>78 / 100</td>
-                                    <td><span class="grade-badge-sm grade-a">A</span></td>
-                                    <td><span class="standing-pill">Very Good</span></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>URK22CS1104</strong></td>
-                                    <td>Jerome D.</td>
-                                    <td>65 / 100</td>
-                                    <td><span class="grade-badge-sm grade-bplus">B+</span></td>
-                                    <td><span class="standing-pill">Good</span></td>
+                                <tr class="portal-empty-row">
+                                    <td colspan="5">No assessment records yet. Enter marks on the left or click &ldquo;Load Sample Data&rdquo; for a demo.</td>
                                 </tr>
                             </tbody>
                         </table>
